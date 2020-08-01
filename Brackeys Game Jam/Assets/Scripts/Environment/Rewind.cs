@@ -87,11 +87,14 @@ public class Rewind : MonoBehaviour
             case Type.Enemy:
                 GetComponent<EnemyMovement>().RewindEnemy(position);
                 break;
+            case Type.Movement:
+                gameObject.SendMessage("StartRewind", position);
+                break;
             case Type.Binary:
                 gameObject.SendMessage("StartRewind", active);
                 break;
             case Type.Rotation:
-                //RewindRotation();
+                gameObject.SendMessage("StartRewind", rotation);
                 break;
         }
 

@@ -19,6 +19,7 @@ public class EnemyMovement : MonoBehaviour
     public float chasespeed;
     public int currentPathTarget = 1;
 
+
     [Header("States")]
     public bool waiting;
     public bool chasing;

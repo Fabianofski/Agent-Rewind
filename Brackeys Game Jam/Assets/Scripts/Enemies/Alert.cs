@@ -11,6 +11,7 @@ public class Alert : MonoBehaviour
     public float AlertingDistance;
     public float ChasingDistance;
     public float distance;
+    public LayerMask blockSight;
 
     private RaycastHit2D hit;
 
@@ -26,7 +27,7 @@ public class Alert : MonoBehaviour
         distance = Vector2.Distance(Player.transform.position, transform.position);
         direction = new Vector2(Player.transform.position.x - transform.position.x, Player.transform.position.y- transform.position.y).normalized;
 
-        hit = Physics2D.Raycast(transform.position, direction, distance);
+        hit = Physics2D.Raycast(transform.position, direction, distance, blockSight);
 
         if (hit)
         {
