@@ -8,10 +8,14 @@ public class Alert : MonoBehaviour
     private EnemyMovement em;
     private GameObject Player;
     private Vector2 direction;
+
     public float AlertingDistance;
     public float ChasingDistance;
     public float distance;
     public LayerMask blockSight;
+
+    public bool PlayerCrouching;
+    public bool InCone;
 
     private RaycastHit2D hit;
 
@@ -31,12 +35,21 @@ public class Alert : MonoBehaviour
         // Shoot Raycast to Players Direction
         hit = Physics2D.Raycast(transform.position, direction, distance, blockSight);
 
+
         if (hit)
         {
             // Only Chase Player when player got hit by Raycast and the Enemy is close enough
-            if (distance < AlertingDistance && hit.collider.gameObject.tag == "Player")
+            if (distance < AlertingDistance && hit.collider.gameObject.tag == "Player" && !PlayerCrouching)
             {
                 em.chasing = true;
+            }
+            else if (PlayerCrouching && InCone)
+            {
+                em.chasing = true;
+            }
+            else if(em.chasing && ChasingDistance < distance && !em.rewind)
+            {
+                em.chasing = false;
             }
             else
             {
@@ -54,12 +67,24 @@ public class Alert : MonoBehaviour
 
         Gizmos.color = Color.red;
         Gizmos.DrawRay(transform.position, direction * AlertingDistance);
+        Gizmos.DrawWireSphere(transform.position, AlertingDistance);
 
         if (hit.distance < AlertingDistance)
         {
             Gizmos.color = Color.green;
             Gizmos.DrawRay(transform.position, direction * hit.distance);
         }
+    }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "Player")
+            InCone = true;
+    }
+
+    void OnTriggerExit2D()
+    {
+        InCone = false;
     }
 
 }
