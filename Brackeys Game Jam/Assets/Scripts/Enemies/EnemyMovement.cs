@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Pathfinding;
 
 public class EnemyMovement : MonoBehaviour
 {
@@ -17,7 +18,9 @@ public class EnemyMovement : MonoBehaviour
     public Path[] path;
     public float speed;
     public float chasespeed;
-    public int currentPathTarget = 1;
+    public int currentPathTarget = 1; 
+    public AIDestinationSetter destination;
+    public AIPath ai;
 
     [Header("States")]
     public bool waiting;
@@ -29,15 +32,22 @@ public class EnemyMovement : MonoBehaviour
     List<Vector3> lastPoses;
 
 
+    void Start()
+    {
+        destination = GetComponent<AIDestinationSetter>();
+        ai = GetComponent<AIPath>();
+    }
 
     void Update()
     {
         if(!chasing)
         {
+            ai.maxSpeed = speed;
             MoveAlongPath(currentPathTarget);
         }
         else if(chasing)
         {
+            ai.maxSpeed = chasespeed;
             Chase(lastPoses);
         }
 
@@ -47,7 +57,7 @@ public class EnemyMovement : MonoBehaviour
     {
         // Move Enemy to new Position when not Waiting
         if (!waiting)
-            transform.position = Vector3.MoveTowards(transform.position, path[Target].Points.position, speed * Time.deltaTime);
+            destination.target = path[Target].Points;
 
         // When the Enemies Position matches the Target Position and a Waittime is specified the Enemy will start waiting
         if (path[Target].Points.position == transform.position && !waiting)
@@ -74,7 +84,15 @@ public class EnemyMovement : MonoBehaviour
     {
         if (rewind)
         {
-            transform.position = Vector3.MoveTowards(transform.position, positions[RewindTarget], chasespeed * Time.deltaTime);
+            List<Transform> transforms = new List<Transform>(positions.Count);
+
+            for(int i = 0; i < transforms.Count; i++)
+            {
+                transforms[i].position = positions[i];
+            }
+
+            destination.target = transforms[RewindTarget];
+            
 
             if (positions[RewindTarget] == transform.position)
             {
@@ -85,7 +103,7 @@ public class EnemyMovement : MonoBehaviour
         else if (chasing)
         {
             GameObject player = GameObject.FindWithTag("Player");
-            transform.position = Vector3.MoveTowards(transform.position, player.transform.position, chasespeed * Time.deltaTime);
+            destination.target = player.transform;
         }
     }
 
