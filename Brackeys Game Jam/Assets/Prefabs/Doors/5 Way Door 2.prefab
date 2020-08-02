@@ -356,8 +356,9 @@ GameObject:
   - component: {fileID: 5490861087945671061}
   - component: {fileID: 5490861087945671062}
   - component: {fileID: 5490861087945671063}
+  - component: {fileID: 1976703556888158995}
   m_Layer: 0
-  m_Name: Door
+  m_Name: 5 Way Door 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -467,6 +468,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   open: 0
+  Rewinding: 0
+--- !u!114 &1976703556888158995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5490861087945671057}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e045785f1f344347b19a803d33da033, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 1
+  maxRewindTime: 5
+  SaveOffset: 0.5
+  position: []
+  active: 
+  rotation: []
 --- !u!1 &5490861088562916820
 GameObject:
   m_ObjectHideFlags: 0

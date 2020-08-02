@@ -9,18 +9,23 @@ public class DoorActivator : MonoBehaviour
 
     void Start()
     {
+        // Get ActivatorHandler in Parent
         activatorhandler = GetComponentInParent<ActivatorHandler>();
     }
 
     void OnTriggerEnter2D(Collider2D collider)
     {
-
-        activatorhandler.Activate(this, int.Parse(gameObject.name));
+        // When DoorActivator is triggered notify the ActivatorHandler 
+        // with their Index (Name)
+        activatorhandler.Activate(int.Parse(gameObject.name));
 
     }
 
     void OnTriggerExit2D()
     {
-        activatorhandler.Deactivate(this, int.Parse(gameObject.name));
+        // When DoorActivator is triggered notify the ActivatorHandler 
+        // with their Index (Name)
+
+        activatorhandler.Deactivate(int.Parse(gameObject.name));
     }
 }

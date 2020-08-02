@@ -19,7 +19,6 @@ public class EnemyMovement : MonoBehaviour
     public float chasespeed;
     public int currentPathTarget = 1;
 
-
     [Header("States")]
     public bool waiting;
     public bool chasing;
@@ -33,20 +32,11 @@ public class EnemyMovement : MonoBehaviour
 
     void Update()
     {
-        if(!chasing && !rewind)
+        if(!chasing)
         {
             MoveAlongPath(currentPathTarget);
         }
-        else if(!chasing && rewind)
-        {
-            MoveAlongPath(currentPathTarget);
-
-        }
-        else if(chasing && !rewind)
-        {
-            Chase(lastPoses);
-        }
-        else if (chasing && rewind)
+        else if(chasing)
         {
             Chase(lastPoses);
         }
@@ -136,7 +126,7 @@ public class EnemyMovement : MonoBehaviour
         }
     }
 
-    public void RewindEnemy(List<Vector3> pos)
+    public void StartRewind(List<Vector3> pos)
     {
         rewind = true;
         lastPoses = pos;
@@ -146,7 +136,7 @@ public class EnemyMovement : MonoBehaviour
           DecreasePathTarget();
     }
 
-    public void StopRewindEnemy()
+    public void StopRewind()
     {
         rewind = false;
 

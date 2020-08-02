@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class Rewind : MonoBehaviour
 {
 
-    public enum Type {Enemy, Movement, Binary, Rotation};
+    public enum Type {Movement, Binary, Rotation};
 
     public Type type;
     public float maxRewindTime;
@@ -29,7 +29,7 @@ public class Rewind : MonoBehaviour
 
     void Update()
     {
-
+        // Temporary Input
         Keyboard kb = InputSystem.GetDevice<Keyboard>();
 
         if (kb.qKey.wasPressedThisFrame)
@@ -48,17 +48,17 @@ public class Rewind : MonoBehaviour
 
     }
 
-    // Save every SaveOffset Seconds and call right function
+    // Save every SaveOffset Seconds and call function based on chosen enum
     IEnumerator Loop()
     {
         yield return new WaitForSeconds(SaveOffset);
 
         switch (type)
         {
-            case Type.Enemy:
+            case Type.Movement:
                 if (Rewinding)
                     break;
-                SaveEnemy();
+                SaveMovement();
                 break;
 
             case Type.Binary:
@@ -84,9 +84,6 @@ public class Rewind : MonoBehaviour
 
         switch (type)
         {
-            case Type.Enemy:
-                GetComponent<EnemyMovement>().RewindEnemy(position);
-                break;
             case Type.Movement:
                 gameObject.SendMessage("StartRewind", position);
                 break;
@@ -105,23 +102,11 @@ public class Rewind : MonoBehaviour
     {
         Rewinding = false;
 
-        switch (type)
-        {
-            case Type.Enemy:
-                GetComponent<EnemyMovement>().StopRewindEnemy();
-                break;
-            case Type.Binary:
-                gameObject.SendMessage("StopRewind");
-                break;
-            case Type.Rotation:
-                //RewindRotation();
-                break;
-        }
-
+        gameObject.SendMessage("StopRewind");
     }
 
-    // Save points
-    void SaveEnemy()
+    // Save points in List of chosen Variable
+    void SaveMovement()
     {
         position.Insert(0, transform.position);
         if (position.Count > SavedPoints)

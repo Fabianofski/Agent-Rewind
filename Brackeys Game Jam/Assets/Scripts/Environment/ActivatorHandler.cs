@@ -24,44 +24,65 @@ public class ActivatorHandler : MonoBehaviour
 
     void Start()
     {
+        // Get Door Script in Parent
         door = GetComponentInParent<Door>();
+
+        // Initialize bool Array 
         TriggersPressed = new bool[activators.Length];
     }
 
     void Update()
     {
-        AllTriggersSetUp = true;
-        for (int i = 0; i < activators.Length; i++)
+        if (!door.Rewinding)
         {
-            if (TriggersPressed[i] != activators[i].press)
+            // Check if every Activator is set up right
+            AllTriggersSetUp = true;
+
+            for (int i = 0; i < activators.Length; i++)
             {
-                CloseDoor();
-                AllTriggersSetUp = false;
+                // Loop through every Activator
+                // if the TriggerPressed Array is not the same as the created set up the 
+                // Door will close and the AllTriggersSetUp set to false
+                if (TriggersPressed[i] != activators[i].press)
+                {
+                    CloseDoor();
+                    AllTriggersSetUp = false;
+                }
+
             }
 
+            // Open Door if every Activator is set up right
+            if (AllTriggersSetUp)
+                OpenDoor();
         }
-
-        if(AllTriggersSetUp)
-         OpenDoor();
     }
 
-    public void Activate(DoorActivator dooractivator, int index)
+    public void Activate(int index)
     {
+        // Script is called by Activators
+        // Gets index from Script and sets it to true
+        // The script now knows that the Activator IS triggered 
         TriggersPressed[index] = true;
     }
 
-    public void Deactivate(DoorActivator dooractivator, int index)
+    public void Deactivate(int index)
     {
+        // Script is called by Activators
+        // Gets index from Script and sets it to true
+        // The script now knows that the Activator IS NOT triggered 
+
         TriggersPressed[index] = false;
     }
 
     public void OpenDoor()
     {
+        // Set open Bool in Door Script to true to open Door
         door.open = true;
     }
 
     public void CloseDoor()
     {
+        // Set open Bool in Door Script to false to close Door
         door.open = false;
     }
 }
