@@ -77,10 +77,7 @@ public class @InputMaster1 : IInputActionCollection, IDisposable
                     ""path"": ""<Keyboard>/w"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Keyboard and Mouse"",
-                    ""action"": ""Movement"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
+                    ""interactions"": """"
                 },
                 {
                     ""name"": ""down"",
@@ -88,10 +85,7 @@ public class @InputMaster1 : IInputActionCollection, IDisposable
                     ""path"": ""<Keyboard>/s"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Keyboard and Mouse"",
-                    ""action"": ""Movement"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
+                    ""interactions"": """"
                 },
                 {
                     ""name"": ""left"",
@@ -99,11 +93,10 @@ public class @InputMaster1 : IInputActionCollection, IDisposable
                     ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Keyboard and Mouse"",
-                    ""action"": ""Movement"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
                 {
                     ""name"": ""right"",
                     ""id"": ""e0994a3d-3038-461a-9e70-3d9fabcd09b1"",
@@ -111,9 +104,9 @@ public class @InputMaster1 : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard and Mouse"",
-                    ""action"": ""Movement"",
+                    ""action"": ""Punch"",
                     ""isComposite"": false,
-                    ""isPartOfComposite"": true
+                    ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
@@ -138,6 +131,7 @@ public class @InputMaster1 : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
+
                     ""name"": """",
                     ""id"": ""279f2c1f-2b6e-492f-a18c-07d54849ae4e"",
                     ""path"": ""<Keyboard>/space"",
