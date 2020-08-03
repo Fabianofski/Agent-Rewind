@@ -236,6 +236,7 @@ GameObject:
   - component: {fileID: 1600898054}
   - component: {fileID: 1600898053}
   - component: {fileID: 1600898052}
+  - component: {fileID: 1600898057}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -256,9 +257,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 1600898054}
-  punchPoint: {fileID: 369853239}
-  PunchRadiusPF: {fileID: 6063790806408992570, guid: 8bb4ce85e876c8640b87cd847783feee,
-    type: 3}
   direction: {x: 0, y: 0}
   speed: 5
   sprintspeed: 8
@@ -376,6 +374,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1600898057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1600898051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48429b40609fb52428c2697fbee468f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  punchPoint: {fileID: 369853239}
+  PunchRadiusPF: {fileID: 6063790806408992570, guid: 8bb4ce85e876c8640b87cd847783feee,
+    type: 3}
+  startTimebetweenPunch: 2
 --- !u!1 &1774677205
 GameObject:
   m_ObjectHideFlags: 0

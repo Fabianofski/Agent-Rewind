@@ -8,8 +8,6 @@ public class PlayerMovementController : MonoBehaviour
 {
     public InputMaster1 controls;
     public Rigidbody2D rb;
-    public Transform punchPoint;
-    public GameObject PunchRadiusPF;
 
     public Vector2 direction;
 
@@ -111,11 +109,6 @@ public class PlayerMovementController : MonoBehaviour
         speed = crouch;
     }
 
-    void Punch()
-    {
-        Instantiate(PunchRadiusPF, punchPoint.position, punchPoint.rotation);
-        Debug.Log("Punched");
-    }
 
     void StartRewind()
     {
