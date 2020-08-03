@@ -10,8 +10,6 @@ public class PlayerMovementController : MonoBehaviour
 {
     public InputMaster controls;
     public Rigidbody2D rb;
-    public Transform punchPoint;
-    public GameObject PunchRadiusPF;
 
     public Vector2 direction;
 
@@ -19,13 +17,10 @@ public class PlayerMovementController : MonoBehaviour
     public float sprintspeed = 8f;
     public float walkspeed = 5f;
     public float crouch = 2f;
-    //private float timebetweenPunch;
-    //public float startTimebetweenPunch;
 
     private void Awake()
     {
         controls = new InputMaster();
-        controls.Player.Punch.performed += _ => Punch();
         controls.Player.Sprint.performed += _ => sprintstart();
         controls.Player.Sprint.canceled += _ => sprintend();
         controls.Player.Crouch.performed += _ => Crouchstart();
@@ -54,11 +49,6 @@ public class PlayerMovementController : MonoBehaviour
         speed = crouch;
     }
 
-    void Punch()
-    {
-        Instantiate(PunchRadiusPF, punchPoint.position, punchPoint.rotation);
-        Debug.Log("Punched");
-    }
 
     private void OnEnable()
     {
