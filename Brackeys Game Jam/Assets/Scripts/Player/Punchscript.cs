@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Punchscript : MonoBehaviour
 {
-    public InputMaster controls;
+    public InputMaster1 controls;
     public Transform punchPoint;
     public GameObject PunchRadiusPF;
 
@@ -15,7 +15,7 @@ public class Punchscript : MonoBehaviour
 
     public void Awake()
     {
-        controls = new InputMaster();
+        controls = new InputMaster1();
         controls.Player.Punch.performed += _ => PunchActive = true;
         controls.Player.Punch.canceled += _ => PunchActive = false;
     }

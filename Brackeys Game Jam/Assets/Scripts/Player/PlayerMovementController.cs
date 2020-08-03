@@ -38,9 +38,6 @@ public class PlayerMovementController : MonoBehaviour
     {
         controls = new InputMaster1();
 
-        // Punch
-        controls.Player.Punch.performed += _ => Punch();
-
         // Sprint
         controls.Player.Sprint.performed += _ => Sprint();
         controls.Player.Sprint.canceled += _ => Walk();
