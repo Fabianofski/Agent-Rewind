@@ -14,7 +14,7 @@ public class Alert : MonoBehaviour
     public float distance;
     public LayerMask blockSight;
 
-    private bool PlayerCrouching;
+    public bool PlayerCrouching;
     public bool InCone;
 
     private RaycastHit2D hit;

@@ -65,6 +65,10 @@ public class PlayerMovementController : MonoBehaviour
 
         if (direction == Vector2.zero)
             isCrouching = true;
+        else
+        {
+            isCrouching = false;
+        }
 
             Rewind.value = RewindLeft;
         if (!RewindStarted)

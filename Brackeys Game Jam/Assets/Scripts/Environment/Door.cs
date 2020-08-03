@@ -5,7 +5,7 @@ using UnityEngine;
 public class Door : MonoBehaviour
 {
 
-    public bool open;  
+    public bool open;
 
     private SpriteRenderer sr;
     private BoxCollider2D bc2d;
@@ -13,8 +13,6 @@ public class Door : MonoBehaviour
     private Rewind rewind;
     [HideInInspector]
     public bool Rewinding;
-    private bool CoroutineRunning;
-    private List<bool> Container;
 
     void Awake()
     {
@@ -26,8 +24,6 @@ public class Door : MonoBehaviour
 
     void Update()
     {
-        // Open and Close the door based on the bool "open"
-
         if (open)
         {
             OpenDoor();
