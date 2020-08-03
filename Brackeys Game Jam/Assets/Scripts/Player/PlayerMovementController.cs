@@ -17,6 +17,7 @@ public class PlayerMovementController : MonoBehaviour
     public float crouch = 2f;
     
     public bool isCrouching;
+    private bool CrouchStarted;
     //private float timebetweenPunch;
     //public float startTimebetweenPunch;
 
@@ -60,10 +61,10 @@ public class PlayerMovementController : MonoBehaviour
 
         if (direction == Vector2.zero)
             isCrouching = true;
+        else if (CrouchStarted)
+            isCrouching = true;
         else
-        {
             isCrouching = false;
-        }
 
             Rewind.value = RewindLeft;
         if (!RewindStarted)
@@ -96,13 +97,13 @@ public class PlayerMovementController : MonoBehaviour
 
     void Walk()
     {
-        isCrouching = false;
+        CrouchStarted = false;
         speed = walkspeed; 
     }
     
     void Crouch()
     {
-        isCrouching = true;
+        CrouchStarted = true;
         speed = crouch;
     }
 
@@ -146,5 +147,13 @@ public class PlayerMovementController : MonoBehaviour
     private void OnDisable()
     {
         controls.Disable();
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Laser")
+        {
+            Debug.Log("Get Lasered");
+        }
     }
 }

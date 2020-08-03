@@ -37,9 +37,9 @@ public class MirrorButton : MonoBehaviour
             Entered = true;
 
             if (ClockWise)
-                Rotation = Quaternion.Euler(0, 0, Rotation.eulerAngles.z + 45);
+                Rotation = Quaternion.Euler(0, 0, Rotation.eulerAngles.z + 90);
             else
-                Rotation = Quaternion.Euler(0, 0, Rotation.eulerAngles.z - 45);
+                Rotation = Quaternion.Euler(0, 0, Rotation.eulerAngles.z - 90);
 
         }
 
@@ -53,14 +53,14 @@ public class MirrorButton : MonoBehaviour
 
     void Update()
     {
-        Mirror.transform.rotation = Quaternion.Lerp(Mirror.transform.rotation, Rotation, Speed * Time.deltaTime);
+        Mirror.transform.rotation = Rotation;
     }
 
     void StartRewind(List<bool> rotated)
     {
         if (!rewinding)
         {
-            StartCoroutine(Replay(rotated, rewind.SaveOffset));
+            StartCoroutine(Replay(rotated, rewind.SaveOffset / 2));
             index = 0;
         }
         rewinding = true;
@@ -90,15 +90,15 @@ public class MirrorButton : MonoBehaviour
         if (rotated[index])
         {
             if (ClockWise)
-                Rotation = Quaternion.Euler(0, 0, Rotation.eulerAngles.z - 45);
+                Rotation = Quaternion.Euler(0, 0, Rotation.eulerAngles.z - 90);
             else
-                Rotation = Quaternion.Euler(0, 0, Rotation.eulerAngles.z + 45);
+                Rotation = Quaternion.Euler(0, 0, Rotation.eulerAngles.z + 90);
 
         }
 
         index++;
 
-        StartCoroutine(Replay(rotated, rewind.SaveOffset));
+        StartCoroutine(Replay(rotated, rewind.SaveOffset / 2));
     }
 
 }

@@ -18,6 +18,7 @@ public class EnemyMovement : MonoBehaviour
     public Path[] path;
     public float speed;
     public float chasespeed;
+    public float rotspeed;
     public int currentPathTarget = 1;
     public Transform t;
     public AIDestinationSetter destination;
@@ -44,12 +45,18 @@ public class EnemyMovement : MonoBehaviour
     {
         if(!chasing)
         {
-            ai.maxSpeed = speed;
+            if (rewind)
+                ai.maxSpeed = speed * 2;
+            else
+                ai.maxSpeed = speed;
             MoveAlongPath(currentPathTarget);
         }
         else if(chasing)
         {
-            ai.maxSpeed = chasespeed;
+            if (rewind)
+                ai.maxSpeed = chasespeed * 2;
+            else
+                ai.maxSpeed = chasespeed;
             Chase(lastPoses);
         }
 
@@ -63,7 +70,7 @@ public class EnemyMovement : MonoBehaviour
         }
 
         if((!waiting && direction != Vector2.zero) || chasing)
-           transform.up = direction;
+           transform.up = Vector2.Lerp(transform.up , direction, rotspeed * Time.deltaTime);
     }
 
     void MoveAlongPath(int Target)

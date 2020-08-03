@@ -6,30 +6,34 @@ public class Laser : MonoBehaviour
 {
 
     private LineRenderer linerenderer;
-    private MeshCollider meshCollider;
+    private EdgeCollider2D edgeCollider;
 
     [Header("Laser Parameters")]
 
     public Vector2 direction;
     public float maxDistance;
+    public List<Vector2> hits;
 
     void Start()
     {
         // Get LineRenderer and MeshCollider
         linerenderer = GetComponent<LineRenderer>();
-        meshCollider = GetComponent<MeshCollider>();
+        edgeCollider = GetComponent<EdgeCollider2D>();
+
+        hits.Add(Vector2.zero);
     }
 
     void Update()
     {
         // Reset LineRenderer shoot New Raycast from Laser
         linerenderer.positionCount = 1;
-        newRayCast( transform.position, direction);
+        edgeCollider.points = new Vector2[0];
+        edgeCollider.points = hits.ToArray();
 
-        // Get the Mesh of the LineRenderer so it can be applied to an MeshCollider for Collision
-        Mesh mesh = new Mesh();
-        linerenderer.BakeMesh(mesh, true);
-        meshCollider.sharedMesh = mesh;
+        hits = new List<Vector2>(0);
+        hits.Add(Vector2.zero);
+
+        newRayCast( transform.position, direction);
 
     }
 
@@ -49,8 +53,9 @@ public class Laser : MonoBehaviour
             {
                 // Draw new Line
                 linerenderer.positionCount = linerenderer.positionCount + 1;
+                hits.Add(transform.InverseTransformPoint(hit.point));
                 linerenderer.SetPosition(linerenderer.positionCount - 1, transform.InverseTransformPoint(hit.point));
-
+              
                 // Reflect when Collider is something Reflecting 
                 if (hit.collider.gameObject.layer == 9)
                 {

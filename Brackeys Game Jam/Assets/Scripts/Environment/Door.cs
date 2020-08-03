@@ -52,7 +52,7 @@ public class Door : MonoBehaviour
     {
         if (!Rewinding)
         {
-            StartCoroutine(Replay(rewind.SaveOffset, OpenList));
+            StartCoroutine(Replay(rewind.SaveOffset/2, OpenList));
         }
 
         Rewinding = true;

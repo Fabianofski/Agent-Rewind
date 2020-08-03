@@ -36,7 +36,7 @@ public class Rewind : MonoBehaviour
     {
         pm = GameObject.FindWithTag("Player").GetComponent<PlayerMovementController>();
 
-        maxRewindTime = pm.maxRewindTime;
+        maxRewindTime = pm.maxRewindTime * 2;
         SaveOffset = pm.SaveOffset;
 
         // Calculate Number of Points that have to be saved

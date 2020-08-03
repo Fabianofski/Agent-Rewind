@@ -41,11 +41,11 @@ public class Alert : MonoBehaviour
         if (hit)
         {
             // Only Chase Player when player got hit by Raycast and the Enemy is close enough
-            if (distance < AlertingDistance && hit.collider.gameObject.tag == "Player" && !PlayerCrouching)
+            if (distance < AlertingDistance && hit.collider.gameObject.tag == "Player" && !PlayerCrouching && !em.chasing)
             {
                 em.chasing = true;
             }
-            else if (InCone && hit.collider.gameObject.tag == "Player")
+            else if (InCone && hit.collider.gameObject.tag == "Player" && !em.chasing)
             {
                 em.chasing = true;
             }
@@ -53,7 +53,7 @@ public class Alert : MonoBehaviour
             {
                 em.chasing = false;
             }
-            else
+            else if(em.rewind && distance < AlertingDistance)
             {
                 em.chasing = false;
             }
