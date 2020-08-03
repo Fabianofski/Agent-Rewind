@@ -18,8 +18,7 @@ public class EnemyMovement : MonoBehaviour
     public Path[] path;
     public float speed;
     public float chasespeed;
-    public int currentPathTarget = 1;
-    public Transform t;
+    public int currentPathTarget = 1; 
     public AIDestinationSetter destination;
     public AIPath ai;
 
@@ -30,7 +29,6 @@ public class EnemyMovement : MonoBehaviour
 
     [Header("Rewind")]
     public int RewindTarget;
-    public Vector2 direction;
     List<Vector3> lastPoses;
 
 
@@ -53,17 +51,6 @@ public class EnemyMovement : MonoBehaviour
             Chase(lastPoses);
         }
 
-        if (rewind)
-        {
-            direction = -ai.desiredVelocity;
-        }
-        else
-        {
-            direction = ai.desiredVelocity;
-        }
-
-        if(!waiting && direction != Vector2.zero)
-           transform.up = direction;
     }
 
     void MoveAlongPath(int Target)
@@ -73,7 +60,7 @@ public class EnemyMovement : MonoBehaviour
             destination.target = path[Target].Points;
 
         // When the Enemies Position matches the Target Position and a Waittime is specified the Enemy will start waiting
-        if (Approximately(path[Target].Points.position, transform.position, ai.endReachedDistance * 2) && !waiting)
+        if (path[Target].Points.position == transform.position && !waiting)
         {
             if (path[Target].waitTime != 0)
             {
@@ -97,11 +84,17 @@ public class EnemyMovement : MonoBehaviour
     {
         if (rewind)
         {
-            t.position = positions[RewindTarget];
-            destination.target = t;
+            List<Transform> transforms = new List<Transform>(positions.Count);
+
+            for(int i = 0; i < transforms.Count; i++)
+            {
+                transforms[i].position = positions[i];
+            }
+            
+            destination.target = transforms[RewindTarget];
             
 
-            if (Approximately(positions[RewindTarget], transform.position, ai.endReachedDistance * 2))
+            if (positions[RewindTarget] == transform.position)
             {
                 if (RewindTarget < positions.Count)
                     RewindTarget++;
@@ -157,6 +150,8 @@ public class EnemyMovement : MonoBehaviour
         lastPoses = pos;
         RewindTarget = 0;
 
+        Debug.Log(lastPoses);
+
         if(!waiting)
           DecreasePathTarget();
     }
@@ -179,23 +174,5 @@ public class EnemyMovement : MonoBehaviour
             Gizmos.DrawLine(path[i].Points.position, path[i - 1].Points.position);
         }
         Gizmos.DrawLine(path[path.Length - 1].Points.position, path[0].Points.position);
-    }
-
-    public bool Approximately(Vector3 me, Vector3 other, float allowedDifference)
-    {
-        var dx = me.x - other.x;
-        if (Mathf.Abs(dx) > allowedDifference)
-            return false;
-
-        var dy = me.y - other.y;
-        if (Mathf.Abs(dy) > allowedDifference)
-            return false;
-
-        var dz = me.z - other.z;
-
-        if (Mathf.Abs(dz) > allowedDifference)
-            return false;
-
-        return true;
     }
 }

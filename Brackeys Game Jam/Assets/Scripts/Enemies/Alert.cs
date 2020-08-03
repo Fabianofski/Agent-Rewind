@@ -14,7 +14,7 @@ public class Alert : MonoBehaviour
     public float distance;
     public LayerMask blockSight;
 
-    private bool PlayerCrouching;
+    public bool PlayerCrouching;
     public bool InCone;
 
     private RaycastHit2D hit;
@@ -28,15 +28,13 @@ public class Alert : MonoBehaviour
 
     void Update()
     {
-        // Get Playercrouching State
-        PlayerCrouching = Player.GetComponent<PlayerMovementController>().isCrouching;
-
         // Calculate Distance and Direction to Player
         distance = Vector2.Distance(Player.transform.position, transform.position);
         direction = new Vector2(Player.transform.position.x - transform.position.x, Player.transform.position.y- transform.position.y).normalized;
 
         // Shoot Raycast to Players Direction
         hit = Physics2D.Raycast(transform.position, direction, distance, blockSight);
+
 
         if (hit)
         {
@@ -45,7 +43,7 @@ public class Alert : MonoBehaviour
             {
                 em.chasing = true;
             }
-            else if (InCone && hit.collider.gameObject.tag == "Player")
+            else if (PlayerCrouching && InCone)
             {
                 em.chasing = true;
             }
