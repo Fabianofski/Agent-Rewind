@@ -23,7 +23,8 @@ public class Rewind : MonoBehaviour
 
 
     // Rotation
-    public List<Vector3> rotation;
+    public List<Quaternion> rotation;
+    public GameObject target;
 
     public InputMaster controls;
 
@@ -122,7 +123,7 @@ public class Rewind : MonoBehaviour
 
     void SaveRotation()
     {
-        rotation.Insert(0, transform.eulerAngles);
+        rotation.Insert(0, target.transform.rotation);
         if(rotation.Count > SavedPoints)
             rotation.RemoveAt(SavedPoints);
     }
