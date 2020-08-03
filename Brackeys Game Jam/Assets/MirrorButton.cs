@@ -14,8 +14,6 @@ public class MirrorButton : MonoBehaviour
     private Rewind rewind;
     private int index;
     private bool rewinding;
-    private bool Rotate;
-    private bool Entered;
 
     void Start()
     {
@@ -25,30 +23,11 @@ public class MirrorButton : MonoBehaviour
 
     void OnTriggerEnter2D()
     {
-        if (!rewinding)
-        {
-            Rotate = false;
+        if(ClockWise)
+           Rotation = Quaternion.Euler(0,0,Rotation.eulerAngles.z + 45);
+        else
+            Rotation = Quaternion.Euler(0, 0, Rotation.eulerAngles.z - 45);
 
-            if (!Entered)
-            {
-              Rotate = true;
-              rewind.SaveBinary(Rotate);
-            }
-            Entered = true;
-
-            if (ClockWise)
-                Rotation = Quaternion.Euler(0, 0, Rotation.eulerAngles.z + 45);
-            else
-                Rotation = Quaternion.Euler(0, 0, Rotation.eulerAngles.z - 45);
-
-        }
-
-    }
-
-    void OnTriggerExit2D()
-    {
-        Entered = false;
-        Rotate = false;
     }
 
     void Update()
@@ -56,49 +35,18 @@ public class MirrorButton : MonoBehaviour
         Mirror.transform.rotation = Quaternion.Lerp(Mirror.transform.rotation, Rotation, Speed * Time.deltaTime);
     }
 
-    void StartRewind(List<bool> rotated)
+    void StartRewind(List<Quaternion> rotations)
     {
-        if (!rewinding)
-        {
-            StartCoroutine(Replay(rotated, rewind.SaveOffset));
-            index = 0;
-        }
+        if(!rewinding)
+          StartCoroutine(Replay(rotations, rewind.SaveOffset));
         rewinding = true;
     }
 
-    void StopRewind()
-    {
-        rewinding = false;
-        StopAllCoroutines();
-    }
-
-    void CheckBool()
-    {
-        if(!Rotate)
-            rewind.SaveBinary(Rotate);
-        else
-        {
-            rewind.SaveBinary(false);
-        }
-            
-    }
-
-    public IEnumerator Replay(List<bool> rotated, float time)
+    public IEnumerator Replay(List<Quaternion> rotations, float time)
     {
         yield return new WaitForSeconds(time);
 
-        if (rotated[index])
-        {
-            if (ClockWise)
-                Rotation = Quaternion.Euler(0, 0, Rotation.eulerAngles.z - 45);
-            else
-                Rotation = Quaternion.Euler(0, 0, Rotation.eulerAngles.z + 45);
-
-        }
-
-        index++;
-
-        StartCoroutine(Replay(rotated, rewind.SaveOffset));
+        StartCoroutine(Replay(rotations, rewind.SaveOffset));
     }
 
 }

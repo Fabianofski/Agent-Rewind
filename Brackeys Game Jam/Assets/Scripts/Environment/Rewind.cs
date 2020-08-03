@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Rewind : MonoBehaviour
 {
@@ -8,9 +9,7 @@ public class Rewind : MonoBehaviour
     public enum Type {Movement, Binary, Rotation};
 
     public Type type;
-    [HideInInspector]
     public float maxRewindTime;
-    [HideInInspector]
     public float SaveOffset;
 
     private int SavedPoints;
@@ -21,39 +20,33 @@ public class Rewind : MonoBehaviour
 
     // Binary
     public List<bool> active;
-    public bool StartValue;
 
 
     // Rotation
     public List<Quaternion> rotation;
     public GameObject target;
 
-    private PlayerMovementController pm;
+    public InputMaster controls;
+
+    void Update()
+    {
+        // Temporary Input
+        Keyboard kb = InputSystem.GetDevice<Keyboard>();
+
+        if (kb.qKey.wasPressedThisFrame)
+            RewindTime();
+        else if (kb.qKey.wasReleasedThisFrame)
+            StopRewindTime();
+    }
 
     void Start()
     {
-        pm = GameObject.FindWithTag("Player").GetComponent<PlayerMovementController>();
-
-        maxRewindTime = pm.maxRewindTime;
-        SaveOffset = pm.SaveOffset;
-
         // Calculate Number of Points that have to be saved
         SavedPoints = Mathf.CeilToInt(maxRewindTime / SaveOffset);
 
-        for(int i = 0; i < SavedPoints; i++)
-        {
-            if (type == Type.Movement)
-                position.Insert(0, transform.position);
-            else if (type == Type.Binary)
-                active.Insert(0, StartValue);
-            else
-                rotation.Insert(0, target.transform.rotation);
-
-        }
-
-
         // Start Loop that Saves the Types every Period of Time
         StartCoroutine(Loop());
+
     }
 
     // Save every SaveOffset Seconds and call function based on chosen enum
@@ -86,7 +79,7 @@ public class Rewind : MonoBehaviour
     }
 
     // Rewind Time of chosen enum
-    public void RewindTime()
+    void RewindTime()
     {
         Rewinding = true;
 
@@ -106,7 +99,7 @@ public class Rewind : MonoBehaviour
     }
 
     // Stop Time of chosen enum
-    public void StopRewindTime()
+    void StopRewindTime()
     {
         Rewinding = false;
 
