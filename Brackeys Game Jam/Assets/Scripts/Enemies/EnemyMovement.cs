@@ -90,7 +90,7 @@ public class EnemyMovement : MonoBehaviour
             {
                 transforms[i].position = positions[i];
             }
-
+            
             destination.target = transforms[RewindTarget];
             
 
@@ -149,6 +149,8 @@ public class EnemyMovement : MonoBehaviour
         rewind = true;
         lastPoses = pos;
         RewindTarget = 0;
+
+        Debug.Log(lastPoses);
 
         if(!waiting)
           DecreasePathTarget();
