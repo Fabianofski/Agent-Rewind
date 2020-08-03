@@ -19,6 +19,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
             ""id"": ""99c8ec3a-c577-4247-a068-fffb03b7bb07"",
             ""actions"": [
                 {
+
                     ""name"": ""Punch"",
                     ""type"": ""Button"",
                     ""id"": ""2f55e027-9dcb-43da-818f-8e148f1e42c4"",
@@ -31,10 +32,12 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""type"": ""Value"",
                     ""id"": ""eeddf6b2-7af3-405a-abb9-1d1bb7e44d53"",
                     ""expectedControlType"": ""Vector2"",
+
                     ""processors"": """",
                     ""interactions"": """"
                 },
                 {
+
                     ""name"": ""Sprint"",
                     ""type"": ""Value"",
                     ""id"": ""dadc8c45-84e5-4ee1-a55b-34d4fa543456"",
@@ -47,16 +50,19 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""type"": ""Button"",
                     ""id"": ""70da93a5-f6c6-4ab9-800b-1d8ab8c9ea48"",
                     ""expectedControlType"": ""Button"",
+
                     ""processors"": """",
                     ""interactions"": """"
                 }
             ],
             ""bindings"": [
                 {
+
                     ""name"": """",
                     ""id"": ""c9c08346-cb9c-429a-8a87-52976902dc77"",
                     ""path"": ""<Keyboard>/space"",
                     ""interactions"": ""Press"",
+
                     ""processors"": """",
                     ""groups"": ""Keyboard and Mouse"",
                     ""action"": ""Punch"",
@@ -64,8 +70,10 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
+
                     ""name"": ""2D Vector"",
                     ""id"": ""749b9086-4bd5-48c6-a512-516358bbf3de"",
+
                     ""path"": ""2DVector"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -75,6 +83,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
+
                     ""name"": ""2D Vector"",
                     ""id"": ""3bd62045-1616-4321-8367-cdcaeff09235"",
                     ""path"": ""2DVector"",
@@ -93,10 +102,12 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": ""Keyboard and Mouse"",
                     ""action"": ""Movment"",
+
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
+
                     ""name"": ""down"",
                     ""id"": ""f2ad11b5-c0e1-4b48-8973-6bbad92c7bc5"",
                     ""path"": ""<Keyboard>/s"",
@@ -104,13 +115,16 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": ""Keyboard and Mouse"",
                     ""action"": ""Movment"",
+
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
+
                     ""name"": ""left"",
                     ""id"": ""d434aeac-b386-48d5-a22c-b59e74708ea3"",
                     ""path"": ""<Keyboard>/a"",
+
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard and Mouse"",
@@ -119,9 +133,11 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
+
                     ""name"": ""right"",
                     ""id"": ""8d3940f7-e80c-4865-a51b-c689e2063ee1"",
                     ""path"": ""<Keyboard>/d"",
+
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard and Mouse"",
@@ -130,6 +146,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
+
                     ""name"": """",
                     ""id"": ""ae6a48cc-1085-4525-833a-c69ec2ae89e6"",
                     ""path"": ""<Keyboard>/shift"",
@@ -137,17 +154,20 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": ""Keyboard and Mouse"",
                     ""action"": ""Sprint"",
+
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
+
                     ""id"": ""9ab537ee-1b15-4867-9389-a3f5e5d4f0a3"",
                     ""path"": ""<Keyboard>/leftCtrl"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard and Mouse"",
                     ""action"": ""Crouch"",
+
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
