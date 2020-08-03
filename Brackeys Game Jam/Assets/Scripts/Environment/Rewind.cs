@@ -30,6 +30,8 @@ public class Rewind : MonoBehaviour
 
     private PlayerMovementController pm;
 
+    public bool Save = true;
+
     void Start()
     {
         pm = GameObject.FindWithTag("Player").GetComponent<PlayerMovementController>();
@@ -40,20 +42,24 @@ public class Rewind : MonoBehaviour
         // Calculate Number of Points that have to be saved
         SavedPoints = Mathf.CeilToInt(maxRewindTime / SaveOffset);
 
-        for (int i = 0; i < SavedPoints; i++)
+        if (Save)
         {
-            if (type == Type.Movement)
-                position.Insert(0, transform.position);
-            else if (type == Type.Binary)
-                active.Insert(0, StartValue);
-            else
-                rotation.Insert(0, target.transform.rotation);
+            for (int i = 0; i < SavedPoints; i++)
+            {
+                if (type == Type.Movement)
+                    position.Insert(0, transform.position);
+                else if (type == Type.Binary)
+                    active.Insert(0, StartValue);
+                else
+                    rotation.Insert(0, target.transform.rotation);
+
+            }
+
+
+            // Start Loop that Saves the Types every Period of Time
+            StartCoroutine(Loop());
 
         }
-
-
-        // Start Loop that Saves the Types every Period of Time
-        StartCoroutine(Loop());
     }
 
     // Save every SaveOffset Seconds and call function based on chosen enum

@@ -62,7 +62,7 @@ public class EnemyMovement : MonoBehaviour
             direction = ai.desiredVelocity;
         }
 
-        if(!waiting && direction != Vector2.zero)
+        if((!waiting && direction != Vector2.zero) || chasing)
            transform.up = direction;
     }
 
@@ -101,7 +101,7 @@ public class EnemyMovement : MonoBehaviour
             destination.target = t;
             
 
-            if (Approximately(positions[RewindTarget], transform.position, ai.endReachedDistance * 2))
+            if (Approximately(positions[RewindTarget], transform.position, ai.endReachedDistance / 2))
             {
                 if (RewindTarget < positions.Count)
                     RewindTarget++;
