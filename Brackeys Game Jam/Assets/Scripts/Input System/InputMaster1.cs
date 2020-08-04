@@ -57,6 +57,14 @@ public class @InputMaster1 : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Interacting"",
+                    ""type"": ""Button"",
+                    ""id"": ""f24274f6-cf55-44fb-bed0-bc6f49d0e080"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -158,6 +166,17 @@ public class @InputMaster1 : IInputActionCollection, IDisposable
                     ""action"": ""Rewind"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d9bc433e-863c-4bf9-bc37-a7a0b9dca9bb"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interacting"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -188,6 +207,7 @@ public class @InputMaster1 : IInputActionCollection, IDisposable
         m_Player_Crouch = m_Player.FindAction("Crouch", throwIfNotFound: true);
         m_Player_Punch = m_Player.FindAction("Punch", throwIfNotFound: true);
         m_Player_Rewind = m_Player.FindAction("Rewind", throwIfNotFound: true);
+        m_Player_Interacting = m_Player.FindAction("Interacting", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -242,6 +262,7 @@ public class @InputMaster1 : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_Crouch;
     private readonly InputAction m_Player_Punch;
     private readonly InputAction m_Player_Rewind;
+    private readonly InputAction m_Player_Interacting;
     public struct PlayerActions
     {
         private @InputMaster1 m_Wrapper;
@@ -251,6 +272,7 @@ public class @InputMaster1 : IInputActionCollection, IDisposable
         public InputAction @Crouch => m_Wrapper.m_Player_Crouch;
         public InputAction @Punch => m_Wrapper.m_Player_Punch;
         public InputAction @Rewind => m_Wrapper.m_Player_Rewind;
+        public InputAction @Interacting => m_Wrapper.m_Player_Interacting;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -275,6 +297,9 @@ public class @InputMaster1 : IInputActionCollection, IDisposable
                 @Rewind.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRewind;
                 @Rewind.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRewind;
                 @Rewind.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRewind;
+                @Interacting.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteracting;
+                @Interacting.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteracting;
+                @Interacting.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteracting;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -294,6 +319,9 @@ public class @InputMaster1 : IInputActionCollection, IDisposable
                 @Rewind.started += instance.OnRewind;
                 @Rewind.performed += instance.OnRewind;
                 @Rewind.canceled += instance.OnRewind;
+                @Interacting.started += instance.OnInteracting;
+                @Interacting.performed += instance.OnInteracting;
+                @Interacting.canceled += instance.OnInteracting;
             }
         }
     }
@@ -314,5 +342,6 @@ public class @InputMaster1 : IInputActionCollection, IDisposable
         void OnCrouch(InputAction.CallbackContext context);
         void OnPunch(InputAction.CallbackContext context);
         void OnRewind(InputAction.CallbackContext context);
+        void OnInteracting(InputAction.CallbackContext context);
     }
 }

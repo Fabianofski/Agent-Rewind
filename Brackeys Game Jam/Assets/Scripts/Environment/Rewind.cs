@@ -40,7 +40,8 @@ public class Rewind : MonoBehaviour
         SaveOffset = pm.SaveOffset;
 
         // Calculate Number of Points that have to be saved
-        SavedPoints = Mathf.CeilToInt(maxRewindTime / SaveOffset);
+        int buffer = 10;
+        SavedPoints = Mathf.CeilToInt(maxRewindTime / SaveOffset) + buffer;
 
         if (Save)
         {

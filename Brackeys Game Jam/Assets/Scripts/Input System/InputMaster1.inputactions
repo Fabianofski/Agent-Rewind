@@ -44,6 +44,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "Interacting",
+                    "type": "Button",
+                    "id": "f24274f6-cf55-44fb-bed0-bc6f49d0e080",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -143,6 +151,17 @@
                     "processors": "",
                     "groups": "Keyboard and Mouse",
                     "action": "Rewind",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d9bc433e-863c-4bf9-bc37-a7a0b9dca9bb",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Interacting",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
