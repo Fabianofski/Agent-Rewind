@@ -176,7 +176,7 @@ public class EnemyMovement : MonoBehaviour
           IncreasePathTarget();
     }
 
-    void OnDrawGizmosSelected()
+    void OnDrawGizmos()
     {
         // Visualize Path in Scene View with Gizmos
 

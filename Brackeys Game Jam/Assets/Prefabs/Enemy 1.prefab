@@ -117,7 +117,7 @@ MonoBehaviour:
   chasespeed: 10
   rotspeed: 3
   currentPathTarget: 0
-  t: {fileID: 0}
+  t: {fileID: 597269431694231122}
   destination: {fileID: 0}
   ai: {fileID: 0}
   waiting: 0
