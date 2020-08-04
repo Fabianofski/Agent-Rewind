@@ -7,8 +7,7 @@ using UnityEngine.Experimental.Rendering.Universal;
 
 public class ColorScript : MonoBehaviour
 {
-    [Header("ColorSwitch")]
-    public Color[] colors;
+    [Header("ColorSwitch")]   
     public float TimeBtwColors;
     private int SwitchIndex;
     public Light2D Indicator;
@@ -17,26 +16,59 @@ public class ColorScript : MonoBehaviour
     private float outerRadius;
     private float textSize;
 
+    public enum ColorType { Blue, Red, Yellow, Pink };
+
+    [System.Serializable]
+    public class colours
+    {
+        public Color color;
+        public ColorType colortype;
+    }
+
+    public colours[] ColourCode;
+
     [Header("EnterCode")]
     public GameObject EnterCodeGameObject;
     public int CodeIndex;
     public GameObject[] Code;
+    public Door door;
+
+    [Header("Timer")]
+    public float Time_;
+    public float TimePunish;
+    private float TimeLeft;
+    public Image TimerFill;
 
     // Rewind
     private bool Rewinding;
 
     void Awake()
     {
+        TimeLeft = Time_;
+
         innerRadius = Indicator.pointLightInnerRadius;
         outerRadius = Indicator.pointLightOuterRadius;
         textSize = IndicatorText.fontSize;
 
-        Indicator.color = colors[SwitchIndex];
+        Indicator.color = ColourCode[SwitchIndex].color;
         StartCoroutine(Switch(TimeBtwColors));
 
         for(int i = 0; i < Code.Length; i++)
         {
-            Code[i].GetComponent<Image>().color = colors[i];
+            Code[i].GetComponent<Image>().color = ColourCode[i].color;
+        }
+    }
+
+    void Update()
+    {
+        TimeLeft -= Time.deltaTime;
+
+        float fillamount = 1 - TimeLeft / Time_;
+        TimerFill.fillAmount = fillamount;
+
+        if(TimeLeft < 0)
+        {
+            Debug.Log("Explode");
         }
     }
 
@@ -58,12 +90,12 @@ public class ColorScript : MonoBehaviour
 
         Indicator.pointLightInnerRadius = innerRadius;
         Indicator.pointLightOuterRadius = outerRadius;
-        Indicator.color = colors[SwitchIndex];
+        Indicator.color = ColourCode[SwitchIndex].color;
 
         IndicatorText.fontSize = textSize;
         IndicatorText.text = SwitchIndex + 1 + ".";
 
-        if (SwitchIndex < colors.Length - 1 && !Rewinding)
+        if (SwitchIndex < ColourCode.Length - 1 && !Rewinding)
         {
             StartCoroutine(Switch(time));
         }
@@ -85,16 +117,28 @@ public class ColorScript : MonoBehaviour
         IndicatorText.gameObject.SetActive(false);
     }
 
-    public void EnterCode(Color color)
+    public void EnterCode(ColorType type)
     {
-        if(colors[SwitchIndex] == color)
+        if (CodeIndex < ColourCode.Length)
         {
-            Code[SwitchIndex].SetActive(true);
+            if (ColourCode[CodeIndex].colortype == type)
+            {
+                 Code[CodeIndex].SetActive(true);
+                 CodeIndex++;
+            }
+            else
+            {
+                TimeLeft -= TimePunish;
+                Debug.Log("- " + TimePunish);
+            }
         }
-        else
+
+        if (CodeIndex >= ColourCode.Length)
         {
-            Debug.Log("Verkackt");
+            door.open = true;
+            Debug.Log("Win");
         }
+        
     }
 
     void StartRewind()

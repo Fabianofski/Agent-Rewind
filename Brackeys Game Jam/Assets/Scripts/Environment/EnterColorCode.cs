@@ -7,23 +7,25 @@ public class EnterColorCode : MonoBehaviour
 
     public bool Colliding;
     public Color EnterColor;
-    public InputMaster1 controls;
+    public PlayerMovementController controls;
     private ColorScript colorscript;
+
+    public ColorScript.ColorType colortype;
 
     void Awake()
     {
-        controls = new InputMaster1();
+        controls = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovementController>();
 
-        controls.Player.Interacting.performed += _ => EnterCode();
+        
         colorscript = GetComponentInParent<ColorScript>();
     }
 
-    void EnterCode()
+    void Update()
     {
-        Debug.Log("ja");
-        if (Colliding)
+        if (Colliding && controls.EPressed)
         {
-            colorscript.EnterCode(EnterColor);
+            colorscript.EnterCode(colortype);
+            controls.EPressed = false;
         }
     }
 

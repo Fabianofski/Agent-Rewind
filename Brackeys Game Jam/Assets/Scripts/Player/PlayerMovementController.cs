@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
+using System;
 
 public class PlayerMovementController : MonoBehaviour
 {
@@ -34,6 +35,8 @@ public class PlayerMovementController : MonoBehaviour
     private Rewind[] RewindScripts;
     public bool RewindStarted;
 
+    [HideInInspector]
+    public bool EPressed;
 
     private void Awake()
     {
@@ -53,7 +56,14 @@ public class PlayerMovementController : MonoBehaviour
         controls.Player.Rewind.performed += _ => StartRewind();
         controls.Player.Rewind.canceled += _ => StopRewind();
 
+        controls.Player.Interacting.performed += _ => EnterCode();
     }
+
+    private void EnterCode()
+    {
+        EPressed = true;
+    }
+
     void Update()
     {
         Vector2 direction = controls.Player.Movement.ReadValue<Vector2>();
