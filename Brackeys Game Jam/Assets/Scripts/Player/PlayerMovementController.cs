@@ -28,6 +28,7 @@ public class PlayerMovementController : MonoBehaviour
     public float maxRewindTime;
     public float RewindLeft;
     public float RewindCooldown;
+    private float RewindCooldownCountdown;
     public float SaveOffset;
     public Slider Rewind;
     public GameObject RewindGUI;
@@ -83,7 +84,7 @@ public class PlayerMovementController : MonoBehaviour
                 RewindLeft += Time.deltaTime;
             else
                 RewindLeft = maxRewindTime;
-            RewindCooldown -= Time.deltaTime;
+            RewindCooldownCountdown -= Time.deltaTime;
         }
         else
         {
@@ -120,7 +121,7 @@ public class PlayerMovementController : MonoBehaviour
 
     void StartRewind()
     {
-        if (RewindLeft > 0 && RewindCooldown < 0)
+        if (RewindLeft > 0 && RewindCooldownCountdown < 0)
         {
             RewindStarted = true;
             RewindGUI.SetActive(true);
@@ -142,7 +143,7 @@ public class PlayerMovementController : MonoBehaviour
         RewindStarted = false;
 
         RewindGUI.SetActive(false);
-        RewindCooldown = maxRewindTime - RewindLeft;
+        RewindCooldownCountdown = RewindCooldown;
 
         foreach (Rewind rewind in RewindScripts)
         {

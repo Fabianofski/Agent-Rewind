@@ -49,11 +49,11 @@ public class Alert : MonoBehaviour
             {
                 em.chasing = true;
             }
-            else if(em.chasing && ChasingDistance < distance && !em.rewind)
+            else if(em.chasing && ChasingDistance < distance && !em.rewinding)
             {
                 em.chasing = false;
             }
-            else if(em.rewind && distance < AlertingDistance)
+            else if(em.rewinding && distance < AlertingDistance)
             {
                 em.chasing = false;
             }

@@ -66,11 +66,13 @@ public class Door : MonoBehaviour
 
     IEnumerator Replay(float time, List<bool> OpenList)
     {
-        foreach (bool check in OpenList)
-        {
-            yield return new WaitForSeconds(time);
-            open = check;    
-        }
+        yield return new WaitForSeconds(time);
+            open = rewind.active[0];
+
+            if (rewind.Save)
+                rewind.active.RemoveAt(0);
+
+        StartCoroutine(Replay(time, OpenList));
 
     }
 

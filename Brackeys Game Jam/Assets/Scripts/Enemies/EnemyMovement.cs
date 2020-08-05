@@ -27,25 +27,27 @@ public class EnemyMovement : MonoBehaviour
     [Header("States")]
     public bool waiting;
     public bool chasing;
-    public bool rewind;
+    public bool rewinding;
 
     [Header("Rewind")]
     public int RewindTarget;
     public Vector2 direction;
     List<Vector3> lastPoses;
+    private Rewind rewind;
 
 
-    void Start()
+    void Awake()
     {
         destination = GetComponent<AIDestinationSetter>();
         ai = GetComponent<AIPath>();
+        rewind = GetComponent<Rewind>();
     }
 
     void Update()
     {
         if(!chasing)
         {
-            if (rewind)
+            if (rewinding)
                 ai.maxSpeed = speed * 2;
             else
                 ai.maxSpeed = speed;
@@ -53,14 +55,14 @@ public class EnemyMovement : MonoBehaviour
         }
         else if(chasing)
         {
-            if (rewind)
+            if (rewinding)
                 ai.maxSpeed = chasespeed * 2;
             else
                 ai.maxSpeed = chasespeed;
             Chase(lastPoses);
         }
 
-        if (rewind)
+        if (rewinding)
         {
             direction = -ai.desiredVelocity;
         }
@@ -92,7 +94,7 @@ public class EnemyMovement : MonoBehaviour
             {
                 // When the Enemy has no Waittime specified he will just move on
                 waiting = false;
-                if (!rewind)
+                if (!rewinding)
                     IncreasePathTarget();
                 else
                     DecreasePathTarget();
@@ -102,7 +104,7 @@ public class EnemyMovement : MonoBehaviour
 
     void Chase(List<Vector3> positions)
     {
-        if (rewind)
+        if (rewinding)
         {
             t.position = positions[RewindTarget];
             destination.target = t;
@@ -112,6 +114,7 @@ public class EnemyMovement : MonoBehaviour
             {
                 if (RewindTarget < positions.Count)
                     RewindTarget++;
+                rewind.position.RemoveAt(0);
             }
         }
         else if (chasing)
@@ -126,7 +129,7 @@ public class EnemyMovement : MonoBehaviour
         // Enable Movement after waitTime
         yield return new WaitForSeconds(waitTime);
         waiting = false;
-        if (!rewind)
+        if (!rewinding)
             IncreasePathTarget();
         else
             DecreasePathTarget();
@@ -160,8 +163,9 @@ public class EnemyMovement : MonoBehaviour
 
     public void StartRewind(List<Vector3> pos)
     {
-        rewind = true;
-        lastPoses = pos;
+        if(!rewinding)
+           lastPoses = pos;
+        rewinding = true;
         RewindTarget = 0;
 
         if(!waiting)
@@ -170,7 +174,7 @@ public class EnemyMovement : MonoBehaviour
 
     public void StopRewind()
     {
-        rewind = false;
+        rewinding = false;
 
         if(!waiting)
           IncreasePathTarget();
