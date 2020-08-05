@@ -9,6 +9,7 @@ public class Door : MonoBehaviour
 
     private SpriteRenderer sr;
     private BoxCollider2D bc2d;
+    private int index;
 
     private Rewind rewind;
     [HideInInspector]
@@ -55,6 +56,7 @@ public class Door : MonoBehaviour
             StartCoroutine(Replay(rewind.SaveOffset/2, OpenList));
         }
 
+        index = 0;
         Rewinding = true;
     }
 
@@ -67,11 +69,18 @@ public class Door : MonoBehaviour
     IEnumerator Replay(float time, List<bool> OpenList)
     {
         yield return new WaitForSeconds(time);
+
+        if (!rewind.Save)
+        {
+            open = rewind.active[index];
+            index++;
+        }
+        else
+        {
+            rewind.active.RemoveAt(0);
             open = rewind.active[0];
 
-            if (rewind.Save)
-                rewind.active.RemoveAt(0);
-
+        }
         StartCoroutine(Replay(time, OpenList));
 
     }

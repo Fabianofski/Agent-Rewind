@@ -11,7 +11,7 @@ public class SceneChanger : MonoBehaviour
     private void Update()
     {
 
-        if (Player.transform.position.x > 22)
+        if (Player.position.x > 22)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
@@ -19,6 +19,6 @@ public class SceneChanger : MonoBehaviour
 
     void YSpawnCord()
     {
-        Player.transform.position.y = YPlayerCor;
+        Player.position = new Vector2(Player.position.x, YPlayerCor);
     }
 }
