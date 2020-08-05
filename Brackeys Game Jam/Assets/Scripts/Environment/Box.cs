@@ -38,21 +38,25 @@ public class Box : MonoBehaviour
 
     void StartRewind(List<Vector3> poses)
     {
-        if(!Rewinding)
-           index = 0;
-        lastposes = poses;
+        if (!Rewinding)
+        {
+            index = 0;
+            lastposes = poses;
+        }
         Rewinding = true;
     }
 
     void StopRewind()
     {
         Rewinding = false;
+        rewind.position.RemoveAt(0);
     }
 
     IEnumerator Increase(float time)
     {
         CoroutineIsRunning = true;
         yield return new WaitForSeconds(time);
+        rewind.position.RemoveAt(0);
         index++;
 
         CoroutineIsRunning = false;
