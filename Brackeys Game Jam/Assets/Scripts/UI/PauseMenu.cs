@@ -9,28 +9,26 @@ public class PauseMenu : MonoBehaviour
 
     public GameObject pause;
     public GameObject pauseButton;
+    public InputMaster1 controls;
 
     private Keyboard kb;
 
     void Awake()
     {
-        kb = InputSystem.GetDevice<Keyboard>();
+        controls = new InputMaster1();
+
+        controls.Player.Back.performed += _ => Back();
+        controls.Player.Restart.performed += _ => Restart();
     }
 
-    void Update()
+    void Back()
     {
-        if (kb.rKey.wasReleasedThisFrame)
-        {
-            Restart();
-        }
 
-        if (kb.escapeKey.wasReleasedThisFrame)
-        {
-            if (pause.activeSelf)
-                Resume();
-            else
-                Pause();
-        }
+        if (pause.activeSelf)
+            Resume();
+        else
+            Pause();
+
     }
 
     public void Pause()
@@ -63,6 +61,16 @@ public class PauseMenu : MonoBehaviour
     {
         Time.timeScale = 1;
         Application.Quit();
+    }
+
+    // for new Input System
+    private void OnEnable()
+    {
+        controls.Enable();
+    }
+    private void OnDisable()
+    {
+        controls.Disable();
     }
 
 }

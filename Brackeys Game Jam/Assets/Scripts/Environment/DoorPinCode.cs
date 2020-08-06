@@ -10,38 +10,40 @@ public class DoorPinCode : MonoBehaviour
 
     public TMP_InputField PinInput;
     public string Pin;
+    public InputMaster1 controls;
 
     private bool EPressed;
     private bool Colliding;
     private PlayerMovementController pm;
 
-    void Start()
+    void Awake()
     {
+        controls = new InputMaster1();
+
+        controls.Player.Interacting.performed += _ => EnterPin();
+        controls.Player.Restart.performed += _ => ExitPin();
 
         pm = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovementController>();
     }
 
-    void Update()
+    void EnterPin()
     {
-        EPressed = pm.EPressed;
-
-        if (EPressed && Colliding && !GetComponentInParent<Door>().open)
+        if (Colliding && !GetComponentInParent<Door>().open)
         {
             PinInput.gameObject.SetActive(true);
             pm.EPressed = false;
         }
-
-        if (InputSystem.GetDevice<Keyboard>().escapeKey.wasPressedThisFrame ||!Colliding)
-        {
-            PinInput.gameObject.SetActive(false);
-        }
-
-        if (PinInput.text == Pin && InputSystem.GetDevice<Keyboard>().enterKey.wasPressedThisFrame)
+        if (PinInput.text == Pin)
         {
             PinInput.text = "";
             GetComponentInParent<Door>().open = true;
             PinInput.gameObject.SetActive(false);
         }
+    }
+
+    void ExitPin()
+    {
+        PinInput.gameObject.SetActive(false);
     }
 
     void OnTriggerEnter2D(Collider2D collider)
@@ -58,4 +60,13 @@ public class DoorPinCode : MonoBehaviour
         pm.EPressed = false;
     }
 
+    // for new Input System
+    private void OnEnable()
+    {
+        controls.Enable();
+    }
+    private void OnDisable()
+    {
+        controls.Disable();
+    }
 }
