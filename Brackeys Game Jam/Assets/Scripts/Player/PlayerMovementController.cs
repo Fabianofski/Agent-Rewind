@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 using System;
 
@@ -73,9 +74,7 @@ public class PlayerMovementController : MonoBehaviour
            rb.velocity = direction * speed;
 
         // Check if Player is Crouching
-        if (direction == Vector2.zero)
-            isCrouching = true;
-        else if (CrouchStarted)
+        if (CrouchStarted)
             isCrouching = true;
         else
             isCrouching = false;
@@ -195,6 +194,12 @@ public class PlayerMovementController : MonoBehaviour
             dir = dir.normalized;
             rb.AddForce(dir * LaserForce);
         }
+
+        if (collision.gameObject.tag == "Enemy")
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+
     }
 
     void OnCollisionExit2D()

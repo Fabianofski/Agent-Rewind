@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Experimental.Rendering.Universal;
 
 public class CCTV : MonoBehaviour
 {
@@ -8,9 +9,14 @@ public class CCTV : MonoBehaviour
     public Vector2 maxAngles;
     public float speed;
     public float waitTime;
+    public float GuardAlertDistance;
 
     private bool ReachedMaxAngle = false;
     private bool Rewinding;
+
+    public Light2D ConeLight;
+    public Color alertColor;
+    public Color normalColor;
 
     void Update()
     {
@@ -82,8 +88,32 @@ public class CCTV : MonoBehaviour
     {
         if(collider.gameObject.tag == "Player")
         {
+            ConeLight.color = alertColor;
             Debug.Log("Gotcha");
+
+            GameObject[] Enemies = GameObject.FindGameObjectsWithTag("Enemy");
+
+            foreach (GameObject enemy in Enemies)
+            {
+                enemy.GetComponent<Alert>().CameraAlert(transform, GuardAlertDistance);
+            }
+
         }
+        else
+        {
+            ConeLight.color = normalColor;
+        }
+    }
+
+    void OnTriggerExit2D()
+    {
+        ConeLight.color = normalColor;
+    }
+
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position, GuardAlertDistance);
     }
 
 }
