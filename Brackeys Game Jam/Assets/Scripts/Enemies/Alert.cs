@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Experimental.Rendering.Universal;
 
 public class Alert : MonoBehaviour
 {
@@ -18,6 +19,12 @@ public class Alert : MonoBehaviour
     public bool InCone;
 
     private RaycastHit2D hit;
+
+    public Light2D Cone;
+    public Color alertColor;
+    public Color normalColor;
+
+    private bool CameraMovement;
 
     void Awake()
     {
@@ -41,22 +48,61 @@ public class Alert : MonoBehaviour
         if (hit)
         {
             // Only Chase Player when player got hit by Raycast and the Enemy is close enough
-            if (distance < AlertingDistance && hit.collider.gameObject.tag == "Player" && !PlayerCrouching && !em.chasing)
+            if (distance < AlertingDistance && hit.collider.gameObject.tag == "Player" && !PlayerCrouching)
             {
                 em.chasing = true;
+                NoCameraAlert();
+                em.CheckCamera = false;
+
+                //
+                // Play Alert Sound
+                //
+
             }
-            else if (InCone && hit.collider.gameObject.tag == "Player" && !em.chasing)
+            else if (InCone && hit.collider.gameObject.tag == "Player")
             {
                 em.chasing = true;
+                NoCameraAlert();
+                em.CheckCamera = false;
+
+                //
+                // Play Alert Sound
+                //
             }
-            else if(em.chasing && ChasingDistance < distance && !em.rewinding)
+            else if (CameraMovement)
+            {
+                em.chasing = true;
+                em.CheckCamera = true;
+
+                //
+                // Play Alert Sound
+                //
+            }
+            else if (em.chasing && ChasingDistance < distance && !em.rewinding)
             {
                 em.chasing = false;
+
+                //
+                // Play Enemy Losing Sound
+                //
             }
-            else if(em.rewinding && distance < AlertingDistance)
+            else if (em.rewinding && distance < AlertingDistance)
             {
                 em.chasing = false;
+
+                //
+                // Play Enemy Losing Sound
+                //
             }
+        }
+
+        if (em.chasing)
+        {
+            Cone.color = alertColor;
+        }
+        else
+        {
+            Cone.color = normalColor;
         }
 
     }
@@ -76,6 +122,21 @@ public class Alert : MonoBehaviour
             Gizmos.color = Color.green;
             Gizmos.DrawRay(transform.position, direction * hit.distance);
         }
+    }
+
+    public void CameraAlert(Transform target, float maxDistance)
+    {
+        if (!em.chasing && Vector3.Distance(target.position, transform.position) < maxDistance)
+        {
+            CameraMovement = true;
+            em.destination.target = target;
+
+        }
+    }
+
+    public void NoCameraAlert()
+    {
+        CameraMovement = false;
     }
 
     void OnTriggerEnter2D(Collider2D collision)

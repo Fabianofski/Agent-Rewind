@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 using System;
 
@@ -73,9 +74,7 @@ public class PlayerMovementController : MonoBehaviour
            rb.velocity = direction * speed;
 
         // Check if Player is Crouching
-        if (direction == Vector2.zero)
-            isCrouching = true;
-        else if (CrouchStarted)
+        if (CrouchStarted)
             isCrouching = true;
         else
             isCrouching = false;
@@ -108,7 +107,41 @@ public class PlayerMovementController : MonoBehaviour
 
         }
 
+        if(direction != Vector2.zero)
+        {
+            if (isCrouching)
+            {
+                //
+                // Play Crouch Sound
+                //
+            }
+            else
+            {
+                //
+                // Play Footstep Sound
+                //
+            }
+        }
 
+        if (RewindStarted)
+        {
+            //
+            // Play Rewind Sound
+            //
+        }
+
+        if(RewindLeft <= 0)
+        {
+            //
+            // Play Rewind Empty Sound
+            //
+        }
+        else if (RewindLeft == maxRewindTime)
+        {
+            //
+            // Play Rewind Refilled Sound
+            //
+        }
 
     }
 
@@ -194,7 +227,27 @@ public class PlayerMovementController : MonoBehaviour
             Vector2 dir = pos - hit;
             dir = dir.normalized;
             rb.AddForce(dir * LaserForce);
+
+            //
+            // Play Laser Damage Sound
+            //
         }
+
+        if (collision.gameObject.tag == "Enemy")
+        {
+            //
+            // Play Death Sound
+            //
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+
+        if(collision.gameObject.tag == "Box")
+        {
+            //
+            // Play Push Box Sound
+            //
+        }
+
     }
 
     void OnCollisionExit2D()

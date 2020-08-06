@@ -21,18 +21,13 @@ public class Box : MonoBehaviour
         if (Rewinding)
         {
             // Lerp to old Position
-            transform.position = Vector3.Lerp(transform.position, lastposes[index], rewind.SaveOffset / 2);
+            transform.position = Vector3.Lerp(transform.position, rewind.position[0], rewind.SaveOffset / 2);
 
             // If the Box is at the Position get to next Position
-            if (Approximately(transform.position.x, lastposes[index].x, 0.1f) && Approximately(transform.position.y, lastposes[index].y, 0.1f))
+            if (Approximately(transform.position.x, rewind.position[0].x, 0.1f) && Approximately(transform.position.y, lastposes[index].y, 0.1f))
             {
-                if (Approximately(lastposes[index].x, lastposes[index + 1].x, 0.1f) && Approximately(lastposes[index].y, lastposes[index + 1].y, 0.1f))
-                {
-                    if (!CoroutineIsRunning)
-                        StartCoroutine(Increase(rewind.SaveOffset / 2));
-                }
-                else
-                    index++;
+                if (!CoroutineIsRunning)
+                    StartCoroutine(Increase(rewind.SaveOffset / 2));
             }
         }
 
@@ -62,7 +57,6 @@ public class Box : MonoBehaviour
         CoroutineIsRunning = true;
         yield return new WaitForSeconds(time);
         rewind.position.RemoveAt(0);
-        index++;
 
         CoroutineIsRunning = false;
     }

@@ -64,7 +64,23 @@ public class @InputMaster1 : IInputActionCollection, IDisposable
                     ""id"": ""f24274f6-cf55-44fb-bed0-bc6f49d0e080"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """"
+                    ""interactions"": ""Press(behavior=1)""
+                },
+                {
+                    ""name"": ""Back"",
+                    ""type"": ""Button"",
+                    ""id"": ""869e1076-f56d-4400-baa3-5774b552a3d4"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press(behavior=1)""
+                },
+                {
+                    ""name"": ""Restart"",
+                    ""type"": ""Button"",
+                    ""id"": ""5355cc39-9b5b-4121-aab2-e72193f61721"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press(behavior=1)""
                 }
             ],
             ""bindings"": [
@@ -124,12 +140,78 @@ public class @InputMaster1 : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
+                    ""name"": ""2D Vector"",
+                    ""id"": ""ebc48412-f189-4f2b-b403-8b3b7dcf5473"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""faefbfd7-5151-4974-8580-aef38564d96a"",
+                    ""path"": ""<XInputController>/leftStick/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controller"",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""9db4ad09-3ac2-4b19-a13b-0662429fb62c"",
+                    ""path"": ""<XInputController>/leftStick/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controller"",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""c42e14ed-ae6f-4a22-ba34-245b5c7a34a0"",
+                    ""path"": ""<XInputController>/leftStick/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controller"",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""2c6b70ea-6dd2-4cba-b397-59a31390578a"",
+                    ""path"": ""<XInputController>/leftStick/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controller"",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
                     ""name"": """",
                     ""id"": ""4a113480-5562-492d-ba5e-0019e9c2b9d6"",
                     ""path"": ""<Keyboard>/shift"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard and Mouse"",
+                    ""action"": ""Sprint"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c9b5835f-4365-4ed7-bf8d-c4aaa3d75d74"",
+                    ""path"": ""<XInputController>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controller"",
                     ""action"": ""Sprint"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -147,11 +229,33 @@ public class @InputMaster1 : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""f0173bd0-0bb3-40fa-a6bf-41d272604241"",
+                    ""path"": ""<XInputController>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controller"",
+                    ""action"": ""Crouch"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""279f2c1f-2b6e-492f-a18c-07d54849ae4e"",
                     ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard and Mouse"",
+                    ""action"": ""Punch"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2bb59bb1-6ddf-443e-9cf2-7a087e49bc3f"",
+                    ""path"": ""<XInputController>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controller"",
                     ""action"": ""Punch"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -169,12 +273,78 @@ public class @InputMaster1 : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""62f5a46a-7365-4998-a0b4-48a0744a2883"",
+                    ""path"": ""<XInputController>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controller"",
+                    ""action"": ""Rewind"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""d9bc433e-863c-4bf9-bc37-a7a0b9dca9bb"",
                     ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Keyboard and Mouse"",
                     ""action"": ""Interacting"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""54795ad2-02a8-45e9-a0aa-e32a7ed22aaa"",
+                    ""path"": ""<XInputController>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controller"",
+                    ""action"": ""Interacting"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5e3b7961-f344-4f50-85f7-0d72772de812"",
+                    ""path"": ""<XInputController>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controller"",
+                    ""action"": ""Back"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6c4e4ac9-76fe-4db1-82fe-897a66d93191"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and Mouse"",
+                    ""action"": ""Back"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f46a318f-aff9-48cc-98c6-8c3cd5f209b5"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controller"",
+                    ""action"": ""Restart"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2450be6e-6cc4-4c76-9222-47594ee72822"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and Mouse"",
+                    ""action"": ""Restart"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -197,6 +367,11 @@ public class @InputMaster1 : IInputActionCollection, IDisposable
                     ""isOR"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Controller"",
+            ""bindingGroup"": ""Controller"",
+            ""devices"": []
         }
     ]
 }");
@@ -208,6 +383,8 @@ public class @InputMaster1 : IInputActionCollection, IDisposable
         m_Player_Punch = m_Player.FindAction("Punch", throwIfNotFound: true);
         m_Player_Rewind = m_Player.FindAction("Rewind", throwIfNotFound: true);
         m_Player_Interacting = m_Player.FindAction("Interacting", throwIfNotFound: true);
+        m_Player_Back = m_Player.FindAction("Back", throwIfNotFound: true);
+        m_Player_Restart = m_Player.FindAction("Restart", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -263,6 +440,8 @@ public class @InputMaster1 : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_Punch;
     private readonly InputAction m_Player_Rewind;
     private readonly InputAction m_Player_Interacting;
+    private readonly InputAction m_Player_Back;
+    private readonly InputAction m_Player_Restart;
     public struct PlayerActions
     {
         private @InputMaster1 m_Wrapper;
@@ -273,6 +452,8 @@ public class @InputMaster1 : IInputActionCollection, IDisposable
         public InputAction @Punch => m_Wrapper.m_Player_Punch;
         public InputAction @Rewind => m_Wrapper.m_Player_Rewind;
         public InputAction @Interacting => m_Wrapper.m_Player_Interacting;
+        public InputAction @Back => m_Wrapper.m_Player_Back;
+        public InputAction @Restart => m_Wrapper.m_Player_Restart;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -300,6 +481,12 @@ public class @InputMaster1 : IInputActionCollection, IDisposable
                 @Interacting.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteracting;
                 @Interacting.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteracting;
                 @Interacting.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteracting;
+                @Back.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnBack;
+                @Back.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnBack;
+                @Back.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnBack;
+                @Restart.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRestart;
+                @Restart.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRestart;
+                @Restart.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRestart;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -322,6 +509,12 @@ public class @InputMaster1 : IInputActionCollection, IDisposable
                 @Interacting.started += instance.OnInteracting;
                 @Interacting.performed += instance.OnInteracting;
                 @Interacting.canceled += instance.OnInteracting;
+                @Back.started += instance.OnBack;
+                @Back.performed += instance.OnBack;
+                @Back.canceled += instance.OnBack;
+                @Restart.started += instance.OnRestart;
+                @Restart.performed += instance.OnRestart;
+                @Restart.canceled += instance.OnRestart;
             }
         }
     }
@@ -335,6 +528,15 @@ public class @InputMaster1 : IInputActionCollection, IDisposable
             return asset.controlSchemes[m_KeyboardandMouseSchemeIndex];
         }
     }
+    private int m_ControllerSchemeIndex = -1;
+    public InputControlScheme ControllerScheme
+    {
+        get
+        {
+            if (m_ControllerSchemeIndex == -1) m_ControllerSchemeIndex = asset.FindControlSchemeIndex("Controller");
+            return asset.controlSchemes[m_ControllerSchemeIndex];
+        }
+    }
     public interface IPlayerActions
     {
         void OnMovement(InputAction.CallbackContext context);
@@ -343,5 +545,7 @@ public class @InputMaster1 : IInputActionCollection, IDisposable
         void OnPunch(InputAction.CallbackContext context);
         void OnRewind(InputAction.CallbackContext context);
         void OnInteracting(InputAction.CallbackContext context);
+        void OnBack(InputAction.CallbackContext context);
+        void OnRestart(InputAction.CallbackContext context);
     }
 }

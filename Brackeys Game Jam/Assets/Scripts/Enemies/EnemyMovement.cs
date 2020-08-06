@@ -28,6 +28,7 @@ public class EnemyMovement : MonoBehaviour
     public bool waiting;
     public bool chasing;
     public bool rewinding;
+    public bool CheckCamera;
 
     [Header("Rewind")]
     public int RewindTarget;
@@ -66,6 +67,13 @@ public class EnemyMovement : MonoBehaviour
             Chase(lastPoses);
         }
 
+        if (!waiting)
+        {
+            //
+            // Play Footstep Sound
+            //
+        }
+
         if (rewinding)
         {
             // Get the direction from Pathfinderscript
@@ -78,7 +86,7 @@ public class EnemyMovement : MonoBehaviour
         }
 
         // Set the Rotation to the direction 
-        if((!waiting && direction != Vector2.zero) || chasing)
+        if(!waiting || chasing)
            transform.up = Vector2.Lerp(transform.up , direction, rotspeed * Time.deltaTime);
     }
 
@@ -128,8 +136,16 @@ public class EnemyMovement : MonoBehaviour
         else if (chasing)
         {
             // When chasing select the Player as Target
-            GameObject player = GameObject.FindWithTag("Player");
-            destination.target = player.transform;
+            if (!CheckCamera)
+            {
+                GameObject player = GameObject.FindWithTag("Player");
+                destination.target = player.transform;
+            }
+            else if(Approximately(transform.position, destination.target.position, ai.endReachedDistance))
+            {
+                CheckCamera = false;
+                GetComponent<Alert>().NoCameraAlert();
+            }
         }
     }
 

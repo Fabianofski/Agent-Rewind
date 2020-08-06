@@ -19,6 +19,9 @@ public class DoorActivator : MonoBehaviour
         // with their Index (Name)
         activatorhandler.Activate(int.Parse(gameObject.name));
 
+        //
+        // Play Button Push Sound
+        //
     }
 
     void OnTriggerExit2D()

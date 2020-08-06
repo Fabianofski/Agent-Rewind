@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3216630776368320320}
   - component: {fileID: 3216630776368320321}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Point Light 2D (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -85,7 +85,7 @@ GameObject:
   - component: {fileID: 3216630777168546959}
   - component: {fileID: 3216630777168546958}
   - component: {fileID: 3216630777168546954}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: CCTV
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -193,6 +193,10 @@ MonoBehaviour:
   maxAngles: {x: 0, y: 90}
   speed: 5
   waitTime: 3
+  GuardAlertDistance: 18
+  ConeLight: {fileID: 3216630776368320321}
+  alertColor: {r: 1, g: 0, b: 0, a: 1}
+  normalColor: {r: 0.99215686, g: 1, b: 0, a: 1}
 --- !u!60 &3216630777168546954
 PolygonCollider2D:
   m_ObjectHideFlags: 0
