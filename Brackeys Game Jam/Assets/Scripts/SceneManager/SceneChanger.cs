@@ -5,20 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class SceneChanger : MonoBehaviour
 {
-    public Transform Player;
-    private float YPlayerCor;
-
-    private void Update()
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-
-        if (Player.position.x > 22)
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        }
-    }
-
-    void YSpawnCord()
-    {
-        Player.position = new Vector2(Player.position.x, YPlayerCor);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }
