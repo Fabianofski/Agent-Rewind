@@ -53,25 +53,46 @@ public class Alert : MonoBehaviour
                 em.chasing = true;
                 NoCameraAlert();
                 em.CheckCamera = false;
+
+                //
+                // Play Alert Sound
+                //
+
             }
             else if (InCone && hit.collider.gameObject.tag == "Player")
             {
                 em.chasing = true;
                 NoCameraAlert();
                 em.CheckCamera = false;
+
+                //
+                // Play Alert Sound
+                //
             }
             else if (CameraMovement)
             {
                 em.chasing = true;
                 em.CheckCamera = true;
+
+                //
+                // Play Alert Sound
+                //
             }
-            else if(em.chasing && ChasingDistance < distance && !em.rewinding)
+            else if (em.chasing && ChasingDistance < distance && !em.rewinding)
             {
                 em.chasing = false;
+
+                //
+                // Play Enemy Losing Sound
+                //
             }
-            else if(em.rewinding && distance < AlertingDistance)
+            else if (em.rewinding && distance < AlertingDistance)
             {
                 em.chasing = false;
+
+                //
+                // Play Enemy Losing Sound
+                //
             }
         }
 

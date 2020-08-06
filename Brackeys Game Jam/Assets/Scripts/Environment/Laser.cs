@@ -35,6 +35,9 @@ public class Laser : MonoBehaviour
 
         newRayCast( transform.position, direction);
 
+        //
+        // Play Buzzing Laser Sound
+        //
     }
 
     void newRayCast(Vector2 origin, Vector2 dir)

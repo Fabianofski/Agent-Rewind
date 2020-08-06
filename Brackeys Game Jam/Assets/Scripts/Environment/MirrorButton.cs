@@ -27,6 +27,10 @@ public class MirrorButton : MonoBehaviour
     {
         if (!rewinding)
         {
+            //
+            // Play Button Push Sound
+            //
+
             Rotate = false;
 
             // If the Trigger wasnt already entered save true value
@@ -44,6 +48,9 @@ public class MirrorButton : MonoBehaviour
             else
                 Rotation = Quaternion.Euler(0, 0, Rotation.eulerAngles.z - 90);
 
+            //
+            // Play Mirror Move Sound
+            //
         }
 
     }
@@ -103,6 +110,13 @@ public class MirrorButton : MonoBehaviour
             else
                 Rotation = Quaternion.Euler(0, 0, Rotation.eulerAngles.z + 90);
 
+            //
+            // Play Button Push Sound
+            //
+
+            //
+            // Play Mirror Move Sound
+            //
         }
         // remove replayed Inputs
         rewind.active.RemoveAt(0);

@@ -107,7 +107,41 @@ public class PlayerMovementController : MonoBehaviour
 
         }
 
+        if(direction != Vector2.zero)
+        {
+            if (isCrouching)
+            {
+                //
+                // Play Crouch Sound
+                //
+            }
+            else
+            {
+                //
+                // Play Footstep Sound
+                //
+            }
+        }
 
+        if (RewindStarted)
+        {
+            //
+            // Play Rewind Sound
+            //
+        }
+
+        if(RewindLeft <= 0)
+        {
+            //
+            // Play Rewind Empty Sound
+            //
+        }
+        else if (RewindLeft == maxRewindTime)
+        {
+            //
+            // Play Rewind Refilled Sound
+            //
+        }
 
     }
 
@@ -193,11 +227,25 @@ public class PlayerMovementController : MonoBehaviour
             Vector2 dir = pos - hit;
             dir = dir.normalized;
             rb.AddForce(dir * LaserForce);
+
+            //
+            // Play Laser Damage Sound
+            //
         }
 
         if (collision.gameObject.tag == "Enemy")
         {
+            //
+            // Play Death Sound
+            //
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+
+        if(collision.gameObject.tag == "Box")
+        {
+            //
+            // Play Push Box Sound
+            //
         }
 
     }

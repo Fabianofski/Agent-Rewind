@@ -50,6 +50,13 @@ public class CCTV : MonoBehaviour
             else
                 transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, 0, maxAngles.y), 2 * speed * Time.deltaTime);
         }
+
+        if (transform.eulerAngles.z != maxAngles.y && transform.eulerAngles.z != maxAngles.x)
+        {
+            //
+            // Play CCTV Moving Sound
+            //
+        }
     }
 
     void StartRewind()

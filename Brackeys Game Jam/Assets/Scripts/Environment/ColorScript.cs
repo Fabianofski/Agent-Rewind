@@ -61,10 +61,18 @@ public class ColorScript : MonoBehaviour
         {
             Code[i].GetComponent<Image>().color = ColourCode[i].color;
         }
+
+        //
+        // Play Start Timer Sound
+        //
     }
 
     void Update()
     {
+        //
+        // Play Timer Ticking Sound
+        //
+
         // Decrease Time left
         TimeLeft -= Time.deltaTime;
 
@@ -75,7 +83,14 @@ public class ColorScript : MonoBehaviour
         // Explode when there is no Time left
         if(TimeLeft < 0)
         {
+            //
+            // Play End Timer Sound
+            //
             Debug.Log("Explode");
+
+            //
+            // Play Explosion Sound
+            //
         }
     }
 
@@ -105,6 +120,32 @@ public class ColorScript : MonoBehaviour
         // Set Indicatortext to right text and make it visible again
         IndicatorText.fontSize = textSize;
         IndicatorText.text = SwitchIndex + 1 + ".";
+
+        // Sounds
+        if (ColourCode[SwitchIndex].colortype == ColorType.Blue)
+        {
+            //
+            // Play Beep Sound
+            //
+        }
+        else if (ColourCode[SwitchIndex].colortype == ColorType.Pink)
+        {
+            //
+            // Play Beep Sound
+            //
+        }
+        else if (ColourCode[SwitchIndex].colortype == ColorType.Red)
+        {
+            //
+            // Play Beep Sound
+            //
+        }
+        else if (ColourCode[SwitchIndex].colortype == ColorType.Yellow)
+        {
+            //
+            // Play Beep Sound
+            //
+        }
 
         // Start new Coroutine or make the Player enter the Code
         if (SwitchIndex < ColourCode.Length - 1 && !Rewinding)

@@ -67,6 +67,13 @@ public class EnemyMovement : MonoBehaviour
             Chase(lastPoses);
         }
 
+        if (!waiting)
+        {
+            //
+            // Play Footstep Sound
+            //
+        }
+
         if (rewinding)
         {
             // Get the direction from Pathfinderscript
