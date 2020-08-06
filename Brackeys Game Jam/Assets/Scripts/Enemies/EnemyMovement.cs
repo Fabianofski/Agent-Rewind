@@ -47,6 +47,8 @@ public class EnemyMovement : MonoBehaviour
     {
         if(!chasing)
         {
+            // When patroling set the Speed to times 2
+            // Because Rewind is 2x << 
             if (rewinding)
                 ai.maxSpeed = speed * 2;
             else
@@ -55,6 +57,8 @@ public class EnemyMovement : MonoBehaviour
         }
         else if(chasing)
         {
+            // When chasing set the Speed to times 2
+            // Because Rewind is 2x << 
             if (rewinding)
                 ai.maxSpeed = chasespeed * 2;
             else
@@ -64,13 +68,16 @@ public class EnemyMovement : MonoBehaviour
 
         if (rewinding)
         {
+            // Get the direction from Pathfinderscript
             direction = -ai.desiredVelocity;
         }
         else
         {
+            // Get the direction from Pathfinderscript
             direction = ai.desiredVelocity;
         }
 
+        // Set the Rotation to the direction 
         if((!waiting && direction != Vector2.zero) || chasing)
            transform.up = Vector2.Lerp(transform.up , direction, rotspeed * Time.deltaTime);
     }
@@ -106,10 +113,11 @@ public class EnemyMovement : MonoBehaviour
     {
         if (rewinding)
         {
+            // Set Transform t to Target
             t.position = positions[RewindTarget];
             destination.target = t;
             
-
+            // if Enemy reached destination remove used Inputs from List and increase RewindTarget
             if (Approximately(positions[RewindTarget], transform.position, ai.endReachedDistance / 2))
             {
                 if (RewindTarget < positions.Count)
@@ -119,6 +127,7 @@ public class EnemyMovement : MonoBehaviour
         }
         else if (chasing)
         {
+            // When chasing select the Player as Target
             GameObject player = GameObject.FindWithTag("Player");
             destination.target = player.transform;
         }
@@ -163,9 +172,12 @@ public class EnemyMovement : MonoBehaviour
 
     public void StartRewind(List<Vector3> pos)
     {
+        // Start Rewind
         if(!rewinding)
            lastPoses = pos;
         rewinding = true;
+
+        // Set RewindTarget to 0
         RewindTarget = 0;
 
         if(!waiting)
@@ -174,6 +186,7 @@ public class EnemyMovement : MonoBehaviour
 
     public void StopRewind()
     {
+        // Stop Rewind
         rewinding = false;
 
         if(!waiting)
@@ -192,6 +205,9 @@ public class EnemyMovement : MonoBehaviour
         Gizmos.DrawLine(path[path.Length - 1].Points.position, path[0].Points.position);
     }
 
+    // Takes in 3 Parameters a, b and difference
+    // When the difference between a and b is smaller than difference
+    // return true else false
     public bool Approximately(Vector3 me, Vector3 other, float allowedDifference)
     {
         var dx = me.x - other.x;

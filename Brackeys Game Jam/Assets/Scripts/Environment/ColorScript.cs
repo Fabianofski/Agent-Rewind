@@ -44,15 +44,19 @@ public class ColorScript : MonoBehaviour
 
     void Awake()
     {
+        // Set Timeleft to Max Time
         TimeLeft = Time_;
 
+        // Get inner, outer Radius and Fontsize
         innerRadius = Indicator.pointLightInnerRadius;
         outerRadius = Indicator.pointLightOuterRadius;
         textSize = IndicatorText.fontSize;
 
+        // Set first Color
         Indicator.color = ColourCode[SwitchIndex].color;
         StartCoroutine(Switch(TimeBtwColors));
 
+        // Set Colors for Code displayed on UI
         for(int i = 0; i < Code.Length; i++)
         {
             Code[i].GetComponent<Image>().color = ColourCode[i].color;
@@ -61,11 +65,14 @@ public class ColorScript : MonoBehaviour
 
     void Update()
     {
+        // Decrease Time left
         TimeLeft -= Time.deltaTime;
 
+        // Set Timer in UI
         float fillamount = 1 - TimeLeft / Time_;
         TimerFill.fillAmount = fillamount;
 
+        // Explode when there is no Time left
         if(TimeLeft < 0)
         {
             Debug.Log("Explode");
@@ -76,6 +83,7 @@ public class ColorScript : MonoBehaviour
     {
         yield return new WaitForSeconds(time * 2/3);
 
+        // make Indicator invisible for 1/3 of wait time
         Indicator.pointLightInnerRadius = 0;
         Indicator.pointLightOuterRadius = 0;
 
@@ -83,18 +91,22 @@ public class ColorScript : MonoBehaviour
 
         yield return new WaitForSeconds(time * 1/3);
 
+        // Increase or decrease Switchindex
         if (Rewinding)
             SwitchIndex--;
         else
             SwitchIndex++;
 
+        // Set Indicator to right color and make it visible again
         Indicator.pointLightInnerRadius = innerRadius;
         Indicator.pointLightOuterRadius = outerRadius;
         Indicator.color = ColourCode[SwitchIndex].color;
 
+        // Set Indicatortext to right text and make it visible again
         IndicatorText.fontSize = textSize;
         IndicatorText.text = SwitchIndex + 1 + ".";
 
+        // Start new Coroutine or make the Player enter the Code
         if (SwitchIndex < ColourCode.Length - 1 && !Rewinding)
         {
             StartCoroutine(Switch(time));
@@ -112,6 +124,7 @@ public class ColorScript : MonoBehaviour
 
     void ActivateEnterCode()
     {
+        // Activate the Objects to enter the Code with
         EnterCodeGameObject.SetActive(true);
         Indicator.gameObject.SetActive(false);
         IndicatorText.gameObject.SetActive(false);
@@ -119,15 +132,19 @@ public class ColorScript : MonoBehaviour
 
     public void EnterCode(ColorType type)
     {
+        // Gets Called by EnterColorCode script
+
         if (CodeIndex < ColourCode.Length)
         {
             if (ColourCode[CodeIndex].colortype == type)
             {
+                 // Input was true display code on UI
                  Code[CodeIndex].SetActive(true);
                  CodeIndex++;
             }
             else
             {
+                // Input was wrong Punish Player by decreasing Time
                 TimeLeft -= TimePunish;
                 Debug.Log("- " + TimePunish);
             }
@@ -135,6 +152,7 @@ public class ColorScript : MonoBehaviour
 
         if (CodeIndex >= ColourCode.Length)
         {
+            // When there is no Color left open the door
             door.open = true;
             Debug.Log("Win");
         }
@@ -143,11 +161,15 @@ public class ColorScript : MonoBehaviour
 
     void StartRewind()
     {
+        // Start Rewind
+
         if (!Rewinding)
         {
+            // Start Color Switch Coroutine
             StopAllCoroutines();
             StartCoroutine(Switch(TimeBtwColors/2));
 
+            // Disable Objects to enter code with
             EnterCodeGameObject.SetActive(false);
             Indicator.gameObject.SetActive(true);
             IndicatorText.gameObject.SetActive(true);
@@ -158,6 +180,7 @@ public class ColorScript : MonoBehaviour
 
     void StopRewind()
     {
+        // Stop Rewind
         Rewinding = false;
         StopAllCoroutines();
         StartCoroutine(Switch(TimeBtwColors));

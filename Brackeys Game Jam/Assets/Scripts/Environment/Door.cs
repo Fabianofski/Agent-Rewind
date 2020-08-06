@@ -25,6 +25,7 @@ public class Door : MonoBehaviour
 
     void Update()
     {
+        // Open and Close Door
         if (open)
         {
             OpenDoor();
@@ -51,6 +52,7 @@ public class Door : MonoBehaviour
 
     public void StartRewind(List<bool> OpenList)
     {
+        // Start Rewind and Coroutine
         if (!Rewinding)
         {
             StartCoroutine(Replay(rewind.SaveOffset/2, OpenList));
@@ -62,14 +64,18 @@ public class Door : MonoBehaviour
 
     public void StopRewind()
     {
+        // Stop Rewind and all Coroutines
         Rewinding = false;
         StopAllCoroutines();
     }
 
     IEnumerator Replay(float time, List<bool> OpenList)
     {
+        // set open to List input after time seconds
         yield return new WaitForSeconds(time);
 
+        // When the Input is not saved set open to List indexes 
+        // else to List[0]
         if (!rewind.Save)
         {
             open = rewind.active[index];
@@ -87,6 +93,7 @@ public class Door : MonoBehaviour
 
     public void CheckBool()
     {
+        // Check and Save bool for Rewindscript
         rewind.SaveBinary(open);
     }
 

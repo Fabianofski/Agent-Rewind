@@ -20,8 +20,10 @@ public class Box : MonoBehaviour
     {
         if (Rewinding)
         {
+            // Lerp to old Position
             transform.position = Vector3.Lerp(transform.position, lastposes[index], rewind.SaveOffset / 2);
 
+            // If the Box is at the Position get to next Position
             if (Approximately(transform.position.x, lastposes[index].x, 0.1f) && Approximately(transform.position.y, lastposes[index].y, 0.1f))
             {
                 if (Approximately(lastposes[index].x, lastposes[index + 1].x, 0.1f) && Approximately(lastposes[index].y, lastposes[index + 1].y, 0.1f))
@@ -38,6 +40,7 @@ public class Box : MonoBehaviour
 
     void StartRewind(List<Vector3> poses)
     {
+        // Start Rewind set index to 0 and get the Input
         if (!Rewinding)
         {
             index = 0;
@@ -48,12 +51,14 @@ public class Box : MonoBehaviour
 
     void StopRewind()
     {
+        // Stop the Rewind
         Rewinding = false;
         rewind.position.RemoveAt(0);
     }
 
     IEnumerator Increase(float time)
     {
+        // Increase the index after time seconds
         CoroutineIsRunning = true;
         yield return new WaitForSeconds(time);
         rewind.position.RemoveAt(0);
@@ -62,6 +67,9 @@ public class Box : MonoBehaviour
         CoroutineIsRunning = false;
     }
 
+    // Takes in 3 Parameters a, b and difference
+    // When the difference between a and b is smaller than difference
+    // return true else false
     bool Approximately(float a, float b, float difference)
     {
         if (Mathf.Abs(a - b) < difference)

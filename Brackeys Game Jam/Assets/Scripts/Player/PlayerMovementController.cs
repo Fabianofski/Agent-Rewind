@@ -19,8 +19,7 @@ public class PlayerMovementController : MonoBehaviour
     
     public bool isCrouching;
     private bool CrouchStarted;
-    //private float timebetweenPunch;
-    //public float startTimebetweenPunch;
+    public float LaserForce = 50;
 
 
     [Header("Rewind")]
@@ -38,6 +37,7 @@ public class PlayerMovementController : MonoBehaviour
 
     [HideInInspector]
     public bool EPressed;
+    private bool Colliding;
 
     private void Awake()
     {
@@ -67,9 +67,12 @@ public class PlayerMovementController : MonoBehaviour
 
     void Update()
     {
+        // Player Movement
         Vector2 direction = controls.Player.Movement.ReadValue<Vector2>();
-        rb.velocity = direction * speed;
+        if(!Colliding)
+           rb.velocity = direction * speed;
 
+        // Check if Player is Crouching
         if (direction == Vector2.zero)
             isCrouching = true;
         else if (CrouchStarted)
@@ -77,20 +80,28 @@ public class PlayerMovementController : MonoBehaviour
         else
             isCrouching = false;
 
+        // Set Slider to RewindLeft
             Rewind.value = RewindLeft;
+
+        
         if (!RewindStarted)
         {
+            // Reload Rewind
             if (RewindLeft < maxRewindTime)
                 RewindLeft += Time.deltaTime;
             else
                 RewindLeft = maxRewindTime;
+
+            // Decrease RewindCooldown
             RewindCooldownCountdown -= Time.deltaTime;
         }
         else
         {
+            // Decrease RewindLeft
             RewindLeft -= Time.deltaTime;
             if(RewindLeft < 0)
             {
+                // Stop Rewind when there is no Rewind Left
                 RewindLeft = 0;
                 StopRewind();
             }
@@ -103,17 +114,20 @@ public class PlayerMovementController : MonoBehaviour
 
     void Sprint()
     {
+        // set Players speed to Sprint speed
         speed = sprintspeed;
     }
 
     void Walk()
     {
+        // set Players speed to Walk speed
         CrouchStarted = false;
         speed = walkspeed; 
     }
     
     void Crouch()
     {
+        // set Players speed to Crouch speed
         CrouchStarted = true;
         speed = crouch;
     }
@@ -121,11 +135,15 @@ public class PlayerMovementController : MonoBehaviour
 
     void StartRewind()
     {
+        // Start the Rewind
+
         if (RewindLeft > 0 && RewindCooldownCountdown < 0)
         {
+            // Activate GUI 
             RewindStarted = true;
             RewindGUI.SetActive(true);
 
+            // Rewind Time in every Rewind Script in the Scene
             foreach (Rewind rewind in RewindScripts)
             {
                 rewind.RewindTime();
@@ -134,14 +152,17 @@ public class PlayerMovementController : MonoBehaviour
         }
         else
         {
+            // Stop the Rewind
             StopRewind();
         }
     }
 
     void StopRewind()
     {
+        // Stop Rewind
         RewindStarted = false;
 
+        // Deactivate Rewind GUI, reset Rewind Cooldown
         RewindGUI.SetActive(false);
         RewindCooldownCountdown = RewindCooldown;
 
@@ -151,6 +172,7 @@ public class PlayerMovementController : MonoBehaviour
         }
     }
 
+    // for new Input System
     private void OnEnable()
     {
         controls.Enable();
@@ -162,9 +184,27 @@ public class PlayerMovementController : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
+        // Check for Collisions
         if (collision.gameObject.tag == "Laser")
         {
-            Debug.Log("Get Lasered");
+            Colliding = true;
+
+            Vector2 pos = transform.position;
+            Vector2 hit = collision.GetContact(0).point;
+            Vector2 dir = pos - hit;
+            dir = dir.normalized;
+            rb.AddForce(dir * LaserForce);
         }
+    }
+
+    void OnCollisionExit2D()
+    {
+        StartCoroutine(col());
+    }
+
+    IEnumerator col()
+    {
+        yield return new WaitForSeconds(0.1f);
+        Colliding = false;
     }
 }

@@ -14,14 +14,16 @@ public class EnterColorCode : MonoBehaviour
 
     void Awake()
     {
+        // Get Components
         controls = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovementController>();
 
-        
         colorscript = GetComponentInParent<ColorScript>();
     }
 
     void Update()
     {
+        // If the Player stands on the Button and E is pressed enter the Code
+
         if (Colliding && controls.EPressed)
         {
             colorscript.EnterCode(colortype);
@@ -31,6 +33,7 @@ public class EnterColorCode : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collider)
     {
+        // Check for Collision
         if(collider.gameObject.tag == "Player")
         {
             Colliding = true;
@@ -39,6 +42,7 @@ public class EnterColorCode : MonoBehaviour
 
     void OnTriggerExit2D()
     {
+        // Set Colliding to false
        Colliding = false;
     }
 

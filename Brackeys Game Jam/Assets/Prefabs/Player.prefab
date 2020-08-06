@@ -152,6 +152,7 @@ MonoBehaviour:
   walkspeed: 5
   crouch: 2
   isCrouching: 0
+  LaserForce: 200
   maxRewindTime: 10
   RewindLeft: 0
   RewindCooldown: 0
@@ -159,6 +160,7 @@ MonoBehaviour:
   Rewind: {fileID: 0}
   RewindGUI: {fileID: 0}
   RewindStarted: 0
+  EPressed: 0
 --- !u!114 &3938583717744893793
 MonoBehaviour:
   m_ObjectHideFlags: 0
