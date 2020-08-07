@@ -1,7 +1,31 @@
 fileFormatVersion: 2
 guid: f6991b32349bfd541a2da11ec1262fea
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: 7698253521543340847
+    second: warehouse_0
+  - first:
+      213: -6888923195220760756
+    second: warehouse_1
+  - first:
+      213: -9176939077860316980
+    second: warehouse_2
+  - first:
+      213: 1602893993741030592
+    second: warehouse_3
+  - first:
+      213: 5726432764547785894
+    second: warehouse_4
+  - first:
+      213: -4687082599015707220
+    second: warehouse_5
+  - first:
+      213: -7731359377039904179
+    second: warehouse_6
+  - first:
+      213: -7574552369473563204
+    second: warehouse_7
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -109,7 +133,133 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: warehouse_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 5068
+        width: 778
+        height: 778
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f23ad7e6ac0b5da60800000000000000
+      internalID: 7698253521543340847
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: warehouse_1
+      rect:
+        serializedVersion: 2
+        x: 778
+        y: 5068
+        width: 778
+        height: 778
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c47eaef5ad0a560a0800000000000000
+      internalID: -6888923195220760756
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: warehouse_2
+      rect:
+        serializedVersion: 2
+        x: 1556
+        y: 5068
+        width: 778
+        height: 778
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc82cbab786f4a080800000000000000
+      internalID: -9176939077860316980
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: warehouse_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 4290
+        width: 778
+        height: 778
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a467096240687f40800000000000000
+      internalID: 5726432764547785894
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: warehouse_5
+      rect:
+        serializedVersion: 2
+        x: 778
+        y: 4290
+        width: 778
+        height: 778
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cad01cc953324feb0800000000000000
+      internalID: -4687082599015707220
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: warehouse_6
+      rect:
+        serializedVersion: 2
+        x: 1556
+        y: 4290
+        width: 778
+        height: 778
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d42b6aceb91b4b490800000000000000
+      internalID: -7731359377039904179
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
