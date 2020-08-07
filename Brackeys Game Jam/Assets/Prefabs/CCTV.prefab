@@ -306,8 +306,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxAngles: {x: 0, y: 90}
-  speed: 5
-  waitTime: 3
+  speed: 1
+  waitTime: 6
   GuardAlertDistance: 18
   ConeLight: {fileID: 3736792331485510866}
   alertColor: {r: 1, g: 0, b: 0, a: 1}

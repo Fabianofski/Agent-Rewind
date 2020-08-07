@@ -1,13 +1,10 @@
 fileFormatVersion: 2
-guid: c66c35f14f1089145aa438caa4d8a429
+guid: 1db6b57c5b6c05842b649b67673b87ea
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1516221729699181939
-    second: hands of clock_0
-  - first:
-      213: -8965527573547731277
-    second: hands of clock_1
+      213: -4556837535794225325
+    second: 1596829307328_0
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -51,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 724
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -117,43 +114,22 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: hands of clock_0
+      name: 1596829307328_0
       rect:
         serializedVersion: 2
-        x: 1836
-        y: 1506
-        width: 328
-        height: 31
-      alignment: 5
-      pivot: {x: 1, y: 0.5}
+        x: 2709
+        y: 714
+        width: 598
+        height: 386
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 375b27f31a3ba0510800000000000000
-      internalID: 1516221729699181939
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: hands of clock_1
-      rect:
-        serializedVersion: 2
-        x: 2183
-        y: 1504
-        width: 278
-        height: 37
-      alignment: 4
-      pivot: {x: 0, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3b6b7ba5c2c049380800000000000000
-      internalID: -8965527573547731277
+      spriteID: 35f91d3876cd2c0c0800000000000000
+      internalID: -4556837535794225325
       vertices: []
       indices: 
       edges: []

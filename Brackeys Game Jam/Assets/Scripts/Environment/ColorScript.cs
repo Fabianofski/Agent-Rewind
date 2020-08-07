@@ -38,11 +38,12 @@ public class ColorScript : MonoBehaviour
     public float TimePunish;
     private float TimeLeft;
     public Image TimerFill;
+    public RectTransform ClockHand;
 
     // Rewind
     private bool Rewinding;
 
-    void Awake()
+    void OnEnable()
     {
         // Set Timeleft to Max Time
         TimeLeft = Time_;
@@ -79,9 +80,9 @@ public class ColorScript : MonoBehaviour
         // Set Timer in UI
         float fillamount = 1 - TimeLeft / Time_;
         TimerFill.fillAmount = fillamount;
-
+        ClockHand.rotation = Quaternion.Euler(0,0,450 - (fillamount * 360));
         // Explode when there is no Time left
-        if(TimeLeft < 0)
+        if (TimeLeft < 0)
         {
             //
             // Play End Timer Sound

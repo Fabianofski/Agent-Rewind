@@ -9,6 +9,7 @@ public class DoorPinCode : MonoBehaviour
 {
 
     public TMP_InputField PinInput;
+    public TextMeshProUGUI text;
     public string Pin;
     public InputMaster1 controls;
 
@@ -28,8 +29,6 @@ public class DoorPinCode : MonoBehaviour
 
     void EnterPin()
     {
-        Debug.Log("tt");
-
         if (Colliding && !GetComponentInParent<Door>().open)
         {
             PinInput.gameObject.SetActive(true);
@@ -53,12 +52,14 @@ public class DoorPinCode : MonoBehaviour
         if (collider.gameObject.tag == "Player")
         {
             Colliding = true;
+            text.enabled = true;
         }
     }
 
     void OnTriggerExit2D()
     {
         Colliding = false;
+        text.enabled = false;
         pm.EPressed = false;
     }
 

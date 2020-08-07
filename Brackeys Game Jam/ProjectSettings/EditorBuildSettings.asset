@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/LEVEL4 Cellar.unity
     guid: 01c4a058050163f44ac6a44163bcbc03
+  - enabled: 1
+    path: Assets/Scenes/LEVEL5 Cellar.unity
+    guid: 1d86581c295ab9f48901c999eeaf1b05
   m_configObjects: {}
