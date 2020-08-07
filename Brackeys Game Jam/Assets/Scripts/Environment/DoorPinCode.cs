@@ -12,8 +12,6 @@ public class DoorPinCode : MonoBehaviour
     public TextMeshProUGUI text;
     public string Pin;
     public InputMaster1 controls;
-
-    private bool EPressed;
     private bool Colliding;
     private PlayerMovementController pm;
 
@@ -61,6 +59,8 @@ public class DoorPinCode : MonoBehaviour
         Colliding = false;
         text.enabled = false;
         pm.EPressed = false;
+
+        PinInput.gameObject.SetActive(false);
     }
 
     // for new Input System

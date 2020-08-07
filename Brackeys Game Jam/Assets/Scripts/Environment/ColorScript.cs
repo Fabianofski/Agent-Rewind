@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.Experimental.Rendering.Universal;
@@ -39,6 +40,7 @@ public class ColorScript : MonoBehaviour
     private float TimeLeft;
     public Image TimerFill;
     public RectTransform ClockHand;
+    public GameObject Explosion;
 
     // Rewind
     private bool Rewinding;
@@ -84,6 +86,8 @@ public class ColorScript : MonoBehaviour
         // Explode when there is no Time left
         if (TimeLeft < 0)
         {
+            Explosion.SetActive(true);
+
             //
             // Play End Timer Sound
             //
@@ -92,6 +96,11 @@ public class ColorScript : MonoBehaviour
             //
             // Play Explosion Sound
             //
+
+            if(TimeLeft < -3)
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            }
         }
     }
 
@@ -184,7 +193,7 @@ public class ColorScript : MonoBehaviour
                  Code[CodeIndex].SetActive(true);
                  CodeIndex++;
             }
-            else
+            else if(TimeLeft >= 0)
             {
                 // Input was wrong Punish Player by decreasing Time
                 TimeLeft -= TimePunish;
