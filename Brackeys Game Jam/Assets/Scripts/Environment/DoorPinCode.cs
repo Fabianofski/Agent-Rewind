@@ -28,6 +28,8 @@ public class DoorPinCode : MonoBehaviour
 
     void EnterPin()
     {
+        Debug.Log("tt");
+
         if (Colliding && !GetComponentInParent<Door>().open)
         {
             PinInput.gameObject.SetActive(true);

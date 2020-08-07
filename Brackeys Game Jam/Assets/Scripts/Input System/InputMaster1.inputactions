@@ -293,6 +293,17 @@
                 },
                 {
                     "name": "",
+                    "id": "83d67863-497f-4166-b26b-3eb9d6a7d354",
+                    "path": "<Keyboard>/enter",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard and Mouse",
+                    "action": "Interacting",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "5e3b7961-f344-4f50-85f7-0d72772de812",
                     "path": "<XInputController>/buttonEast",
                     "interactions": "",

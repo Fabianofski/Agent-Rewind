@@ -36,24 +36,41 @@ public class EnemyMovement : MonoBehaviour
     List<Vector3> lastPoses;
     private Rewind rewind;
 
+    [Header("Animations")]
+
+    private Animator animator;
+    private SpriteRenderer spriteRenderer;
+    public Sprite waitSprite;
+
 
     void Awake()
     {
         destination = GetComponent<AIDestinationSetter>();
         ai = GetComponent<AIPath>();
         rewind = GetComponent<Rewind>();
+
+        animator = GetComponentInChildren<Animator>();
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
 
     void Update()
     {
         if(!chasing)
         {
+            animator.speed = 1;
+
             // When patroling set the Speed to times 2
             // Because Rewind is 2x << 
             if (rewinding)
+            {
                 ai.maxSpeed = speed * 2;
+                animator.speed = 1;
+            }
             else
+            {
                 ai.maxSpeed = speed;
+                animator.speed = 2;
+            }
             MoveAlongPath(currentPathTarget);
         }
         else if(chasing)
@@ -61,17 +78,29 @@ public class EnemyMovement : MonoBehaviour
             // When chasing set the Speed to times 2
             // Because Rewind is 2x << 
             if (rewinding)
+            {
                 ai.maxSpeed = chasespeed * 2;
+                animator.speed = chasespeed / speed * 2;
+            }
             else
+            {
                 ai.maxSpeed = chasespeed;
+                animator.speed = chasespeed / speed;
+            }
             Chase(lastPoses);
         }
 
         if (!waiting)
         {
+            animator.enabled = true;
             //
             // Play Footstep Sound
             //
+        }
+        else
+        {
+            animator.enabled = false;
+            spriteRenderer.sprite = waitSprite;
         }
 
         if (rewinding)

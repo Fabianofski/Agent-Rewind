@@ -39,18 +39,18 @@ public class MirrorButton : MonoBehaviour
             {
                 Rotate = true;
                 rewind.SaveBinary(Rotate);
+                // Rotate the Mirror clockwise or counterclockwise by 90 degrees;
+                if (ClockWise)
+                    Rotation = Quaternion.Euler(0, 0, Rotation.eulerAngles.z + 90);
+                else
+                    Rotation = Quaternion.Euler(0, 0, Rotation.eulerAngles.z - 90);
+
+                //
+                // Play Mirror Move Sound
+                //
             }
             Entered = true;
 
-            // Rotate the Mirror clockwise or counterclockwise by 90 degrees;
-            if (ClockWise)
-                Rotation = Quaternion.Euler(0, 0, Rotation.eulerAngles.z + 90);
-            else
-                Rotation = Quaternion.Euler(0, 0, Rotation.eulerAngles.z - 90);
-
-            //
-            // Play Mirror Move Sound
-            //
         }
 
     }
@@ -99,6 +99,7 @@ public class MirrorButton : MonoBehaviour
 
     public IEnumerator Replay(List<bool> rotated, float time)
     {
+
         // Every time seconds check for true values in saved List and apply new Rotation
         yield return new WaitForSeconds(time);
 
