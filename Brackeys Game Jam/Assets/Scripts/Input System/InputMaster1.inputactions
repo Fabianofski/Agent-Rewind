@@ -135,7 +135,7 @@
                 {
                     "name": "",
                     "id": "279f2c1f-2b6e-492f-a18c-07d54849ae4e",
-                    "path": "<Keyboard>/space",
+                    "path": "<Keyboard>/p",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard and Mouse",
@@ -162,6 +162,33 @@
                     "processors": "",
                     "groups": "",
                     "action": "Interacting",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "IntroScene",
+            "id": "7008a48b-4ea5-4563-a3ea-c23fa41483d5",
+            "actions": [
+                {
+                    "name": "nextText",
+                    "type": "Button",
+                    "id": "cb8e6d06-5744-4e22-9a00-b57a47090409",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "9ad2657b-c563-47c2-bd81-20fc77a84bf0",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard and Mouse",
+                    "action": "nextText",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

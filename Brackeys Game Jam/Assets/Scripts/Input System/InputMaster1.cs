@@ -148,7 +148,7 @@ public class @InputMaster1 : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""279f2c1f-2b6e-492f-a18c-07d54849ae4e"",
-                    ""path"": ""<Keyboard>/space"",
+                    ""path"": ""<Keyboard>/p"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard and Mouse"",
@@ -175,6 +175,33 @@ public class @InputMaster1 : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Interacting"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""IntroScene"",
+            ""id"": ""7008a48b-4ea5-4563-a3ea-c23fa41483d5"",
+            ""actions"": [
+                {
+                    ""name"": ""nextText"",
+                    ""type"": ""Button"",
+                    ""id"": ""cb8e6d06-5744-4e22-9a00-b57a47090409"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""9ad2657b-c563-47c2-bd81-20fc77a84bf0"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and Mouse"",
+                    ""action"": ""nextText"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -208,6 +235,14 @@ public class @InputMaster1 : IInputActionCollection, IDisposable
         m_Player_Punch = m_Player.FindAction("Punch", throwIfNotFound: true);
         m_Player_Rewind = m_Player.FindAction("Rewind", throwIfNotFound: true);
         m_Player_Interacting = m_Player.FindAction("Interacting", throwIfNotFound: true);
+<<<<<<< Updated upstream
+=======
+        m_Player_Back = m_Player.FindAction("Back", throwIfNotFound: true);
+        m_Player_Restart = m_Player.FindAction("Restart", throwIfNotFound: true);
+        // IntroScene
+        m_IntroScene = asset.FindActionMap("IntroScene", throwIfNotFound: true);
+        m_IntroScene_nextText = m_IntroScene.FindAction("nextText", throwIfNotFound: true);
+>>>>>>> Stashed changes
     }
 
     public void Dispose()
@@ -326,6 +361,39 @@ public class @InputMaster1 : IInputActionCollection, IDisposable
         }
     }
     public PlayerActions @Player => new PlayerActions(this);
+
+    // IntroScene
+    private readonly InputActionMap m_IntroScene;
+    private IIntroSceneActions m_IntroSceneActionsCallbackInterface;
+    private readonly InputAction m_IntroScene_nextText;
+    public struct IntroSceneActions
+    {
+        private @InputMaster1 m_Wrapper;
+        public IntroSceneActions(@InputMaster1 wrapper) { m_Wrapper = wrapper; }
+        public InputAction @nextText => m_Wrapper.m_IntroScene_nextText;
+        public InputActionMap Get() { return m_Wrapper.m_IntroScene; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(IntroSceneActions set) { return set.Get(); }
+        public void SetCallbacks(IIntroSceneActions instance)
+        {
+            if (m_Wrapper.m_IntroSceneActionsCallbackInterface != null)
+            {
+                @nextText.started -= m_Wrapper.m_IntroSceneActionsCallbackInterface.OnNextText;
+                @nextText.performed -= m_Wrapper.m_IntroSceneActionsCallbackInterface.OnNextText;
+                @nextText.canceled -= m_Wrapper.m_IntroSceneActionsCallbackInterface.OnNextText;
+            }
+            m_Wrapper.m_IntroSceneActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @nextText.started += instance.OnNextText;
+                @nextText.performed += instance.OnNextText;
+                @nextText.canceled += instance.OnNextText;
+            }
+        }
+    }
+    public IntroSceneActions @IntroScene => new IntroSceneActions(this);
     private int m_KeyboardandMouseSchemeIndex = -1;
     public InputControlScheme KeyboardandMouseScheme
     {
@@ -343,5 +411,9 @@ public class @InputMaster1 : IInputActionCollection, IDisposable
         void OnPunch(InputAction.CallbackContext context);
         void OnRewind(InputAction.CallbackContext context);
         void OnInteracting(InputAction.CallbackContext context);
+    }
+    public interface IIntroSceneActions
+    {
+        void OnNextText(InputAction.CallbackContext context);
     }
 }
