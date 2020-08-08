@@ -44,8 +44,19 @@ public class PlayerMovementController : MonoBehaviour
     public bool EPressed;
     private bool Colliding;
 
+    [Header("Animations")]
+
+    private Animator animator;
+    public GameObject spriteGO;
+    private SpriteRenderer spriteRenderer;
+    public Sprite waitSprite;
+
     private void Awake()
     {
+        // Get Components
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        animator = GetComponentInChildren<Animator>();
+
         controls = new InputMaster1();
 
         // Sprint
@@ -77,7 +88,7 @@ public class PlayerMovementController : MonoBehaviour
     void Update()
     {
         // Player Movement
-        Vector2 direction = controls.Player.Movement.ReadValue<Vector2>();
+        direction = controls.Player.Movement.ReadValue<Vector2>();
         if(!Colliding)
            rb.velocity = direction * speed;
 
@@ -145,19 +156,25 @@ public class PlayerMovementController : MonoBehaviour
             //FMODUnity.RuntimeManager.PlayOneShot("event:/Environment/rewind_refilled", transform.position);
         }
 
+        Animations();
+
     }
 
     void Sprint()
     {
         // set Players speed to Sprint speed
         speed = sprintspeed;
+
+        animator.speed = sprintspeed / speed;
     }
 
     void Walk()
     {
         // set Players speed to Walk speed
         CrouchStarted = false;
-        speed = walkspeed; 
+        speed = walkspeed;
+
+        animator.speed = 1;
     }
     
     void Crouch()
@@ -165,6 +182,8 @@ public class PlayerMovementController : MonoBehaviour
         // set Players speed to Crouch speed
         CrouchStarted = true;
         speed = crouch;
+
+        animator.speed = crouch / speed;
     }
 
     void CallFootsteps()
@@ -284,5 +303,21 @@ public class PlayerMovementController : MonoBehaviour
     {
         yield return new WaitForSeconds(0.1f);
         Colliding = false;
+    }
+
+    void Animations()
+    {
+        
+        if (direction == Vector2.zero)
+        {
+            spriteRenderer.sprite = waitSprite;
+            animator.enabled = false;
+        }
+        else
+        {
+            Vector2 pos = transform.position;
+            spriteGO.transform.up = -direction;
+            animator.enabled = true;
+        }
     }
 }

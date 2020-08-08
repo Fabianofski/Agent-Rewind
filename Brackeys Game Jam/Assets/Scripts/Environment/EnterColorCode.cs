@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class EnterColorCode : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class EnterColorCode : MonoBehaviour
     public bool Colliding;
     public Color EnterColor;
     public PlayerMovementController controls;
+    public TextMeshProUGUI text;
     private ColorScript colorscript;
 
     public ColorScript.ColorType colortype;
@@ -22,6 +24,8 @@ public class EnterColorCode : MonoBehaviour
 
     void Update()
     {
+        text.enabled = Colliding;
+
         // If the Player stands on the Button and E is pressed enter the Code
 
         if (Colliding && controls.EPressed)

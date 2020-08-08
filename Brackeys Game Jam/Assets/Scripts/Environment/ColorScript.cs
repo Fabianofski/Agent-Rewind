@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.Experimental.Rendering.Universal;
@@ -40,12 +41,14 @@ public class ColorScript : MonoBehaviour
     public float TimePunish;
     private float TimeLeft;
     public Image TimerFill;
+    public RectTransform ClockHand;
+    public GameObject Explosion;
 
 
     // Rewind
     private bool Rewinding;
 
-    void Awake()
+    void OnEnable()
     {
         // Set Timeleft to Max Time
         TimeLeft = Time_;
@@ -87,10 +90,12 @@ public class ColorScript : MonoBehaviour
         // Set Timer in UI
         float fillamount = 1 - TimeLeft / Time_;
         TimerFill.fillAmount = fillamount;
-
+        ClockHand.rotation = Quaternion.Euler(0,0,450 - (fillamount * 360));
         // Explode when there is no Time left
-        if(TimeLeft < 0)
+        if (TimeLeft < 0)
         {
+            Explosion.SetActive(true);
+
             //
             // Play End Timer Sound
             timertick.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
@@ -103,6 +108,11 @@ public class ColorScript : MonoBehaviour
             //
             // Play Explosion Sound
             //
+
+            if(TimeLeft < -3)
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            }
         }
     }
 
@@ -195,7 +205,7 @@ public class ColorScript : MonoBehaviour
                  Code[CodeIndex].SetActive(true);
                  CodeIndex++;
             }
-            else
+            else if(TimeLeft >= 0)
             {
                 // Input was wrong Punish Player by decreasing Time
                 TimeLeft -= TimePunish;

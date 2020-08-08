@@ -306,6 +306,17 @@ public class @InputMaster1 : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""83d67863-497f-4166-b26b-3eb9d6a7d354"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and Mouse"",
+                    ""action"": ""Interacting"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""5e3b7961-f344-4f50-85f7-0d72772de812"",
                     ""path"": ""<XInputController>/buttonEast"",
                     ""interactions"": """",
@@ -349,6 +360,44 @@ public class @InputMaster1 : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""IntroScene"",
+            ""id"": ""1f3ec91c-4075-4113-b2d1-49cf6b640ee9"",
+            ""actions"": [
+                {
+                    ""name"": ""nextText"",
+                    ""type"": ""Button"",
+                    ""id"": ""db327d6e-8041-4e8f-a2c0-c21d4c4e8824"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""398ea993-90f2-41de-9cc3-fbd2b2bfb2ee"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""nextText"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""83cb2f3e-04f7-4cc9-bfd0-bd4cc9581af0"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""nextText"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -385,6 +434,9 @@ public class @InputMaster1 : IInputActionCollection, IDisposable
         m_Player_Interacting = m_Player.FindAction("Interacting", throwIfNotFound: true);
         m_Player_Back = m_Player.FindAction("Back", throwIfNotFound: true);
         m_Player_Restart = m_Player.FindAction("Restart", throwIfNotFound: true);
+        // IntroScene
+        m_IntroScene = asset.FindActionMap("IntroScene", throwIfNotFound: true);
+        m_IntroScene_nextText = m_IntroScene.FindAction("nextText", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -519,6 +571,39 @@ public class @InputMaster1 : IInputActionCollection, IDisposable
         }
     }
     public PlayerActions @Player => new PlayerActions(this);
+
+    // IntroScene
+    private readonly InputActionMap m_IntroScene;
+    private IIntroSceneActions m_IntroSceneActionsCallbackInterface;
+    private readonly InputAction m_IntroScene_nextText;
+    public struct IntroSceneActions
+    {
+        private @InputMaster1 m_Wrapper;
+        public IntroSceneActions(@InputMaster1 wrapper) { m_Wrapper = wrapper; }
+        public InputAction @nextText => m_Wrapper.m_IntroScene_nextText;
+        public InputActionMap Get() { return m_Wrapper.m_IntroScene; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(IntroSceneActions set) { return set.Get(); }
+        public void SetCallbacks(IIntroSceneActions instance)
+        {
+            if (m_Wrapper.m_IntroSceneActionsCallbackInterface != null)
+            {
+                @nextText.started -= m_Wrapper.m_IntroSceneActionsCallbackInterface.OnNextText;
+                @nextText.performed -= m_Wrapper.m_IntroSceneActionsCallbackInterface.OnNextText;
+                @nextText.canceled -= m_Wrapper.m_IntroSceneActionsCallbackInterface.OnNextText;
+            }
+            m_Wrapper.m_IntroSceneActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @nextText.started += instance.OnNextText;
+                @nextText.performed += instance.OnNextText;
+                @nextText.canceled += instance.OnNextText;
+            }
+        }
+    }
+    public IntroSceneActions @IntroScene => new IntroSceneActions(this);
     private int m_KeyboardandMouseSchemeIndex = -1;
     public InputControlScheme KeyboardandMouseScheme
     {
@@ -547,5 +632,9 @@ public class @InputMaster1 : IInputActionCollection, IDisposable
         void OnInteracting(InputAction.CallbackContext context);
         void OnBack(InputAction.CallbackContext context);
         void OnRestart(InputAction.CallbackContext context);
+    }
+    public interface IIntroSceneActions
+    {
+        void OnNextText(InputAction.CallbackContext context);
     }
 }

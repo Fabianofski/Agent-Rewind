@@ -293,6 +293,17 @@
                 },
                 {
                     "name": "",
+                    "id": "83d67863-497f-4166-b26b-3eb9d6a7d354",
+                    "path": "<Keyboard>/enter",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard and Mouse",
+                    "action": "Interacting",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "5e3b7961-f344-4f50-85f7-0d72772de812",
                     "path": "<XInputController>/buttonEast",
                     "interactions": "",
@@ -332,6 +343,44 @@
                     "processors": "",
                     "groups": "Keyboard and Mouse",
                     "action": "Restart",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "IntroScene",
+            "id": "1f3ec91c-4075-4113-b2d1-49cf6b640ee9",
+            "actions": [
+                {
+                    "name": "nextText",
+                    "type": "Button",
+                    "id": "db327d6e-8041-4e8f-a2c0-c21d4c4e8824",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "398ea993-90f2-41de-9cc3-fbd2b2bfb2ee",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "nextText",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "83cb2f3e-04f7-4cc9-bfd0-bd4cc9581af0",
+                    "path": "<Keyboard>/enter",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "nextText",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
