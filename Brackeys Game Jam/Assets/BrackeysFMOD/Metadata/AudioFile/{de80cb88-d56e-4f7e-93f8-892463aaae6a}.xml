@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.00.00">
+	<object class="AudioFile" id="{de80cb88-d56e-4f7e-93f8-892463aaae6a}">
+		<property name="assetPath">
+			<value>SFX_Env_cc_blue_01.ogg</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>0.59999999999999998</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{5f6c3156-d6bb-4c62-8173-5fd754e18db2}</destination>
+		</relationship>
+	</object>
+</objects>

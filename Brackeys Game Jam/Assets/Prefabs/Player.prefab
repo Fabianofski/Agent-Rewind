@@ -179,6 +179,7 @@ MonoBehaviour:
   walkspeed: 5
   crouch: 2
   isCrouching: 0
+  IsMoving: 0
   LaserForce: 200
   maxRewindTime: 10
   RewindLeft: 10

@@ -29,7 +29,7 @@ public class MirrorButton : MonoBehaviour
         {
             //
             // Play Button Push Sound
-            //
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Interactables/button", transform.position);
 
             Rotate = false;
 
@@ -48,9 +48,11 @@ public class MirrorButton : MonoBehaviour
             else
                 Rotation = Quaternion.Euler(0, 0, Rotation.eulerAngles.z - 90);
 
-            //
             // Play Mirror Move Sound
-            //
+            FMOD.Studio.EventInstance mirror = FMODUnity.RuntimeManager.CreateInstance("event:/Interactables/mirror");
+            mirror.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(Mirror));
+            mirror.start();
+            mirror.release();
         }
 
     }
@@ -112,11 +114,9 @@ public class MirrorButton : MonoBehaviour
 
             //
             // Play Button Push Sound
-            //
 
             //
             // Play Mirror Move Sound
-            //
         }
         // remove replayed Inputs
         rewind.active.RemoveAt(0);

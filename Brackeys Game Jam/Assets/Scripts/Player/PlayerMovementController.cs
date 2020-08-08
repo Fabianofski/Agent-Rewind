@@ -19,9 +19,13 @@ public class PlayerMovementController : MonoBehaviour
     public float crouch = 2f;
     
     public bool isCrouching;
+    public bool IsMoving;
     private bool CrouchStarted;
     public float LaserForce = 50;
 
+    FMOD.Studio.EventInstance rewindstart;
+    FMOD.Studio.EventInstance rewindempty;
+    FMOD.Studio.EventInstance rewindrefilled;
 
     [Header("Rewind")]
 
@@ -61,6 +65,10 @@ public class PlayerMovementController : MonoBehaviour
         controls.Player.Interacting.performed += _ => EnterCode();
     }
 
+    private void Start()
+    {
+        InvokeRepeating("CallFootsteps", 0, 0.4f);
+    }
     private void EnterCode()
     {
         EPressed = true;
@@ -109,18 +117,12 @@ public class PlayerMovementController : MonoBehaviour
 
         if(direction != Vector2.zero)
         {
-            if (isCrouching)
-            {
-                //
-                // Play Crouch Sound
-                //
-            }
-            else
-            {
-                //
-                // Play Footstep Sound
-                //
-            }
+            IsMoving = true;
+        }
+
+        else if(direction == Vector2.zero)
+        {
+            IsMoving = false;
         }
 
         if (RewindStarted)
@@ -134,13 +136,13 @@ public class PlayerMovementController : MonoBehaviour
         {
             //
             // Play Rewind Empty Sound
-            //
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Environment/rewind_empty", transform.position);
         }
         else if (RewindLeft == maxRewindTime)
         {
             //
             // Play Rewind Refilled Sound
-            //
+            //FMODUnity.RuntimeManager.PlayOneShot("event:/Environment/rewind_refilled", transform.position);
         }
 
     }
@@ -165,6 +167,24 @@ public class PlayerMovementController : MonoBehaviour
         speed = crouch;
     }
 
+    void CallFootsteps()
+    {
+        if (IsMoving == true)
+        {
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Character/player_footsteps", transform.position);
+        }
+
+        else if (IsMoving == true && isCrouching == true)
+        {
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Character/player_crouch", transform.position);
+        }
+
+        else if (IsMoving == true && speed == sprintspeed)
+        {
+            InvokeRepeating("CallFootsteps", 0, 0.1f);
+        }
+    }
+
 
     void StartRewind()
     {
@@ -181,6 +201,11 @@ public class PlayerMovementController : MonoBehaviour
             {
                 rewind.RewindTime();
             }
+
+            // Start Rewind sound
+            rewindstart = FMODUnity.RuntimeManager.CreateInstance("event:/Environment/rewind_start");
+            rewindstart.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(transform.position));
+            rewindstart.start();
 
         }
         else
@@ -203,6 +228,8 @@ public class PlayerMovementController : MonoBehaviour
         {
             rewind.StopRewindTime();
         }
+        // Stop Rewind sound
+        rewindstart.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
     }
 
     // for new Input System
@@ -213,6 +240,7 @@ public class PlayerMovementController : MonoBehaviour
     private void OnDisable()
     {
         controls.Disable();
+        IsMoving = false;
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -228,24 +256,21 @@ public class PlayerMovementController : MonoBehaviour
             dir = dir.normalized;
             rb.AddForce(dir * LaserForce);
 
-            //
             // Play Laser Damage Sound
-            //
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Environment/laser_hit", transform.position);
         }
 
         if (collision.gameObject.tag == "Enemy")
         {
-            //
             // Play Death Sound
-            //
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Character/player_death", transform.position);
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
 
         if(collision.gameObject.tag == "Box")
         {
-            //
             // Play Push Box Sound
-            //
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Character/box", transform.position);
         }
 
     }

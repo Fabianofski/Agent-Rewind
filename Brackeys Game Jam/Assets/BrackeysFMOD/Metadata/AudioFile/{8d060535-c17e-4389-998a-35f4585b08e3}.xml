@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.00.00">
+	<object class="AudioFile" id="{8d060535-c17e-4389-998a-35f4585b08e3}">
+		<property name="assetPath">
+			<value>SFX_AI_attention_end_07.ogg</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>0.72131250000000002</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{5f6c3156-d6bb-4c62-8173-5fd754e18db2}</destination>
+		</relationship>
+	</object>
+</objects>

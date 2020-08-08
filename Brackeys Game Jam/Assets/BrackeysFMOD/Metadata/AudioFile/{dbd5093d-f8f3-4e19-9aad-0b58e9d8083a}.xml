@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.00.00">
+	<object class="AudioFile" id="{dbd5093d-f8f3-4e19-9aad-0b58e9d8083a}">
+		<property name="assetPath">
+			<value>SFX_Env_MirrorMove02.ogg</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>1.1897708333333334</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{5f6c3156-d6bb-4c62-8173-5fd754e18db2}</destination>
+		</relationship>
+	</object>
+</objects>

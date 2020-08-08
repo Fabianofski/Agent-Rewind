@@ -7,6 +7,8 @@ using UnityEngine.Experimental.Rendering.Universal;
 
 public class ColorScript : MonoBehaviour
 {
+    public FMOD.Studio.EventInstance timertick;
+    public FMOD.Studio.EventInstance timerend;
     [Header("ColorSwitch")]   
     public float TimeBtwColors;
     private int SwitchIndex;
@@ -39,6 +41,7 @@ public class ColorScript : MonoBehaviour
     private float TimeLeft;
     public Image TimerFill;
 
+
     // Rewind
     private bool Rewinding;
 
@@ -63,8 +66,13 @@ public class ColorScript : MonoBehaviour
         }
 
         //
-        // Play Start Timer Sound
-        //
+        // Play Start Timer Sound 
+        timertick = FMODUnity.RuntimeManager.CreateInstance("event:/Environment/timer_start");
+        timertick.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(transform.position));
+        timertick.start();
+        FMOD.Studio.EventInstance timerend = FMODUnity.RuntimeManager.CreateInstance("event:/Environment/timer_end");
+        timerend.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(transform.position));
+
     }
 
     void Update()
@@ -85,7 +93,11 @@ public class ColorScript : MonoBehaviour
         {
             //
             // Play End Timer Sound
-            //
+            timertick.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+            timerend.start();
+            timerend.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+
+
             Debug.Log("Explode");
 
             //
@@ -126,25 +138,25 @@ public class ColorScript : MonoBehaviour
         {
             //
             // Play Beep Sound
-            //
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Environment/color_code_blue", transform.position);
         }
         else if (ColourCode[SwitchIndex].colortype == ColorType.Pink)
         {
             //
             // Play Beep Sound
-            //
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Environment/color_code_pink", transform.position);
         }
         else if (ColourCode[SwitchIndex].colortype == ColorType.Red)
         {
             //
             // Play Beep Sound
-            //
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Environment/color_code_red", transform.position);
         }
         else if (ColourCode[SwitchIndex].colortype == ColorType.Yellow)
         {
             //
             // Play Beep Sound
-            //
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Environment/color_code_yellow", transform.position);
         }
 
         // Start new Coroutine or make the Player enter the Code

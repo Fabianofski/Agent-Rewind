@@ -18,6 +18,7 @@ public class CCTV : MonoBehaviour
     public Color alertColor;
     public Color normalColor;
 
+
     void Update()
     {
         if(Approximately(transform.eulerAngles.z, maxAngles.y, 0.1f) && !ReachedMaxAngle)
@@ -55,7 +56,7 @@ public class CCTV : MonoBehaviour
         {
             //
             // Play CCTV Moving Sound
-            //
+            //PlayCCTVSound();
         }
     }
 
@@ -123,4 +124,9 @@ public class CCTV : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, GuardAlertDistance);
     }
 
+    void PlayCCTVSound()
+    {
+        InvokeRepeating("PlayCCTVSound", 0, 2.0f);
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Environment/cctv", transform.position);
+    }
 }

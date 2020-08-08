@@ -38,6 +38,7 @@ public class Punchscript : MonoBehaviour
     void Punch()
     {
         Instantiate(PunchRadiusPF, punchPoint.position, punchPoint.rotation);
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Character/player_punch", transform.position);
         Debug.Log("Punched");
     }
 

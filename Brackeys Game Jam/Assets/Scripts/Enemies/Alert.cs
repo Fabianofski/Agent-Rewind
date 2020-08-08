@@ -50,6 +50,11 @@ public class Alert : MonoBehaviour
             // Only Chase Player when player got hit by Raycast and the Enemy is close enough
             if (distance < AlertingDistance && hit.collider.gameObject.tag == "Player" && !PlayerCrouching)
             {
+                if (!em.chasing)
+                {
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Enemies/enemy_attention_start", transform.position);
+                }
+                
                 em.chasing = true;
                 NoCameraAlert();
                 em.CheckCamera = false;
@@ -61,38 +66,48 @@ public class Alert : MonoBehaviour
             }
             else if (InCone && hit.collider.gameObject.tag == "Player")
             {
+
+                // Play Alert Sound
+                if (!em.chasing)
+                {
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Enemies/enemy_attention_start", transform.position);
+                }
+
                 em.chasing = true;
                 NoCameraAlert();
                 em.CheckCamera = false;
 
-                //
-                // Play Alert Sound
-                //
             }
             else if (CameraMovement)
             {
+                // Play Alert Sound
+                if (!em.chasing)
+                {
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Enemies/enemy_attention_start", transform.position);
+                }
+
                 em.chasing = true;
                 em.CheckCamera = true;
-
-                //
-                // Play Alert Sound
-                //
             }
             else if (em.chasing && ChasingDistance < distance && !em.rewinding)
             {
                 em.chasing = false;
 
-                //
-                // Play Enemy Losing Sound
-                //
+                // Play Alert End Sound
+                if (em.chasing)
+                {
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Enemies/enemy_attention_end", transform.position);
+                }
             }
             else if (em.rewinding && distance < AlertingDistance)
             {
                 em.chasing = false;
 
-                //
-                // Play Enemy Losing Sound
-                //
+                // Play Alert End Sound
+                if (em.chasing)
+                {
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Enemies/enemy_attention_end", transform.position);
+                }
             }
         }
 
