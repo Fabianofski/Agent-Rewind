@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/0 MainMenu.unity
     guid: fae59698b3bc0ec4f9a648551caca6fe
   - enabled: 1
+    path: Assets/Scenes/IntroText.unity
+    guid: 6420af8f44cab6a49a049d6f80a3d507
+  - enabled: 1
     path: Assets/Scenes/Intro Scene.unity
     guid: 9a76544a4d5ba1342a6ff1ddda172558
   - enabled: 1
@@ -26,4 +29,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/LEVEL5 Cellar.unity
     guid: 1d86581c295ab9f48901c999eeaf1b05
+  - enabled: 1
+    path: Assets/Scenes/OutroText.unity
+    guid: 78835be81b8c1ba4e91be1c08e45882e
   m_configObjects: {}
