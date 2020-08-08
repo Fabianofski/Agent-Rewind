@@ -15,7 +15,7 @@ MonoBehaviour:
   Path: event:/Interactables/code_entering
   guid: cd03e303c610444fb14107a70537f0f5
   Banks:
-  - {fileID: 7182375105066388603}
+  - {fileID: -169012408048170733}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -78,7 +78,7 @@ MonoBehaviour:
   Path: event:/Environment/timer_start
   guid: d3aaef6bfa301d438b2324306e38deca
   Banks:
-  - {fileID: 7182375105066388603}
+  - {fileID: -169012408048170733}
   IsStream: 0
   Is3D: 1
   IsOneShot: 0
@@ -101,7 +101,7 @@ MonoBehaviour:
   Path: event:/Environment/timer_end
   guid: 001868b7fdffaa43b20bba975f6267b4
   Banks:
-  - {fileID: 7182375105066388603}
+  - {fileID: -169012408048170733}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -124,7 +124,7 @@ MonoBehaviour:
   Path: event:/Character/player_crouch
   guid: eb93f4aa346d1f4e9c798d7f11499e61
   Banks:
-  - {fileID: 7182375105066388603}
+  - {fileID: -169012408048170733}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -183,7 +183,7 @@ MonoBehaviour:
   Path: event:/Environment/color_code_yellow
   guid: 632d22d7294b9940992176e150562272
   Banks:
-  - {fileID: 7182375105066388603}
+  - {fileID: -169012408048170733}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -224,7 +224,7 @@ MonoBehaviour:
   Path: event:/Environment/rewind_start
   guid: ccb91406aef3dd489a32e8f52a1ac0ed
   Banks:
-  - {fileID: 7182375105066388603}
+  - {fileID: -169012408048170733}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -232,6 +232,29 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 10000
+--- !u!114 &-4399313115382165357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Environment/room_explode
+  m_EditorClassIdentifier: 
+  Path: event:/Environment/room_explode
+  guid: 4f63a566fd362c4f9cfe47ec8c1178a1
+  Banks:
+  - {fileID: -169012408048170733}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 2010
 --- !u!114 &-3935023283354083108
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -247,7 +270,7 @@ MonoBehaviour:
   Path: event:/Character/player_caught
   guid: 3030a16f57e497448560d2e08196d49a
   Banks:
-  - {fileID: 7182375105066388603}
+  - {fileID: -169012408048170733}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -270,7 +293,7 @@ MonoBehaviour:
   Path: event:/Environment/room_passed
   guid: 36ed6cf4ca60674f9e47f4bf6ba5b086
   Banks:
-  - {fileID: 7182375105066388603}
+  - {fileID: -169012408048170733}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -293,7 +316,7 @@ MonoBehaviour:
   Path: event:/Environment/rewind_refilled
   guid: d759cbb14ff325408ad3bd4219ec5522
   Banks:
-  - {fileID: 7182375105066388603}
+  - {fileID: -169012408048170733}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -316,7 +339,7 @@ MonoBehaviour:
   Path: event:/Character/player_footsteps
   guid: 0d346270cda18c4f9a1ae679fe7eb9c1
   Banks:
-  - {fileID: 7182375105066388603}
+  - {fileID: -169012408048170733}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -339,7 +362,7 @@ MonoBehaviour:
   Path: event:/Environment/laser_buzz
   guid: d0d327184ee58b458a9d629667f56832
   Banks:
-  - {fileID: 7182375105066388603}
+  - {fileID: -169012408048170733}
   IsStream: 0
   Is3D: 1
   IsOneShot: 0
@@ -361,11 +384,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: Assets/BrackeysFMOD/Build/Desktop/Master.strings.bank
   SubDir: 
-  lastModified: 637324819421634355
+  lastModified: 637324844472011373
   LoadResult: 0
   FileSizes:
   - Name: 
-    Value: 1924
+    Value: 1974
   Exists: 1
 --- !u!114 &-1786030468606508334
 MonoBehaviour:
@@ -418,7 +441,7 @@ MonoBehaviour:
   Path: event:/Enemies/enemy_footsteps
   guid: ac99ac4f5dab02419b7c2a93d8f5b0c6
   Banks:
-  - {fileID: 7182375105066388603}
+  - {fileID: -169012408048170733}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -441,7 +464,7 @@ MonoBehaviour:
   Path: event:/Environment/rewind_empty
   guid: aa3ca8294c9da444aa86155208fb15c2
   Banks:
-  - {fileID: 7182375105066388603}
+  - {fileID: -169012408048170733}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -464,7 +487,7 @@ MonoBehaviour:
   Path: event:/Enemies/enemy_attention_end
   guid: e52356958f45ed479f371ecced4363e8
   Banks:
-  - {fileID: 7182375105066388603}
+  - {fileID: -169012408048170733}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -487,7 +510,7 @@ MonoBehaviour:
   Path: event:/Environment/color_code_red
   guid: 2cb36af4bd39894fa21076feee2edbb7
   Banks:
-  - {fileID: 7182375105066388603}
+  - {fileID: -169012408048170733}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -495,6 +518,24 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 457
+--- !u!114 &-169012408048170733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/BrackeysFMOD/Build/Desktop/Master.bank
+  SubDir: 
+  lastModified: 637324844471931825
+  LoadResult: 0
+  FileSizes: []
+  Exists: 1
 --- !u!114 &-6932836100282758
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -510,7 +551,7 @@ MonoBehaviour:
   Path: event:/Enemies/enemy_attention_start
   guid: 04cff6fcea85b54396281311a4e5b5ac
   Banks:
-  - {fileID: 7182375105066388603}
+  - {fileID: -169012408048170733}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -532,7 +573,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EditorBanks:
   - {fileID: -2117819839748828385}
-  - {fileID: 7182375105066388603}
+  - {fileID: -169012408048170733}
   EditorEvents:
   - {fileID: -6772778408487401517}
   - {fileID: 8610578763475315771}
@@ -560,12 +601,13 @@ MonoBehaviour:
   - {fileID: -655527553207432414}
   - {fileID: 7178503889751102697}
   - {fileID: -1442561107358201087}
+  - {fileID: -4399313115382165357}
   EditorParameters: []
   MasterBanks:
-  - {fileID: 7182375105066388603}
+  - {fileID: -169012408048170733}
   StringsBanks:
   - {fileID: -2117819839748828385}
-  stringsBankWriteTime: 637324819421634355
+  stringsBankWriteTime: 637324844472011373
   cacheVersion: 3
 --- !u!114 &93371485337808762
 MonoBehaviour:
@@ -618,7 +660,7 @@ MonoBehaviour:
   Path: event:/Character/player_punch
   guid: 8015c465070e1f43b8bf1d68c86909b2
   Banks:
-  - {fileID: 7182375105066388603}
+  - {fileID: -169012408048170733}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -641,7 +683,7 @@ MonoBehaviour:
   Path: event:/Interactables/door_open
   guid: 0ece1719a916a6498dd8c9cdce0fdb77
   Banks:
-  - {fileID: 7182375105066388603}
+  - {fileID: -169012408048170733}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -664,7 +706,7 @@ MonoBehaviour:
   Path: event:/Character/player_death
   guid: 50853415649a1f4a9d77c954c8c91dc9
   Banks:
-  - {fileID: 7182375105066388603}
+  - {fileID: -169012408048170733}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -687,7 +729,7 @@ MonoBehaviour:
   Path: event:/Environment/cctv
   guid: 921b1ad57747b748b2e54ab79be1f1d1
   Banks:
-  - {fileID: 7182375105066388603}
+  - {fileID: -169012408048170733}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -746,7 +788,7 @@ MonoBehaviour:
   Path: event:/Environment/color_code_blue
   guid: c07b35199327c542b2468c2f677e091b
   Banks:
-  - {fileID: 7182375105066388603}
+  - {fileID: -169012408048170733}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -769,7 +811,7 @@ MonoBehaviour:
   Path: event:/Interactables/mirror
   guid: 23ab55e1a1e8f44996268870a6368103
   Banks:
-  - {fileID: 7182375105066388603}
+  - {fileID: -169012408048170733}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -792,7 +834,7 @@ MonoBehaviour:
   Path: event:/Interactables/button
   guid: 98def1ad2b0caa41b918eb4c6cab6092
   Banks:
-  - {fileID: 7182375105066388603}
+  - {fileID: -169012408048170733}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -815,7 +857,7 @@ MonoBehaviour:
   Path: event:/Environment/color_code_pink
   guid: f9b3bce2e69b864d990313578dd782ac
   Banks:
-  - {fileID: 7182375105066388603}
+  - {fileID: -169012408048170733}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -840,7 +882,7 @@ MonoBehaviour:
   lastModified: 637324819421574500
   LoadResult: 0
   FileSizes: []
-  Exists: 1
+  Exists: 0
 --- !u!114 &7473308476463806853
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -874,7 +916,7 @@ MonoBehaviour:
   Path: event:/Environment/laser_hit
   guid: 0398371f0b66194988bd1134e8dfd928
   Banks:
-  - {fileID: 7182375105066388603}
+  - {fileID: -169012408048170733}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -897,7 +939,7 @@ MonoBehaviour:
   Path: event:/Interactables/door_close
   guid: 8e58ae777f7c414c9cb477ef745dc878
   Banks:
-  - {fileID: 7182375105066388603}
+  - {fileID: -169012408048170733}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1

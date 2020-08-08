@@ -96,7 +96,7 @@ public class ColorScript : MonoBehaviour
         {
             if (!Explosion.activeSelf)
             {
-                // Play Explosion
+                FMODUnity.RuntimeManager.PlayOneShot("event:/Environment/room_explode", transform.position);
             }
 
             Explosion.SetActive(true);
