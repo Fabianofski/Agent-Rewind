@@ -94,6 +94,11 @@ public class ColorScript : MonoBehaviour
         // Explode when there is no Time left
         if (TimeLeft < 0)
         {
+            if (!Explosion.activeSelf)
+            {
+                // Play Explosion
+            }
+
             Explosion.SetActive(true);
 
             //

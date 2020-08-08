@@ -51,6 +51,8 @@ public class PlayerMovementController : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     public Sprite waitSprite;
 
+    private bool refilled = true;
+
     private void Awake()
     {
         // Get Components
@@ -149,11 +151,14 @@ public class PlayerMovementController : MonoBehaviour
             // Play Rewind Empty Sound
             FMODUnity.RuntimeManager.PlayOneShot("event:/Environment/rewind_empty", transform.position);
         }
-        else if (RewindLeft == maxRewindTime)
+        else if (RewindLeft == maxRewindTime && !refilled)
         {
-            //
-            // Play Rewind Refilled Sound
-            //FMODUnity.RuntimeManager.PlayOneShot("event:/Environment/rewind_refilled", transform.position);
+            refilled = true;
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Environment/rewind_refilled", transform.position);
+        }
+        else if(RewindLeft != maxRewindTime)
+        {
+            refilled = false;
         }
 
         Animations();

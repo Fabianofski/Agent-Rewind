@@ -72,4 +72,10 @@ public class DoorPinCode : MonoBehaviour
     {
         controls.Disable();
     }
+
+    public void PlaySound()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Interactables/code_entering", transform.position);
+
+    }
 }

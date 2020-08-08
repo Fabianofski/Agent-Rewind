@@ -51,13 +51,6 @@ public class CCTV : MonoBehaviour
             else
                 transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, 0, maxAngles.y), 2 * speed * Time.deltaTime);
         }
-
-        if (transform.eulerAngles.z != maxAngles.y && transform.eulerAngles.z != maxAngles.x)
-        {
-            //
-            // Play CCTV Moving Sound
-            //PlayCCTVSound();
-        }
     }
 
     void StartRewind()
@@ -81,6 +74,12 @@ public class CCTV : MonoBehaviour
     {
         yield return new WaitForSeconds(time);
 
+        if (ReachedMaxAngle != set)
+        {
+            Debug.Log("Play");
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Environment/cctv", transform.position);
+
+        }
         ReachedMaxAngle = set;
     }
 
@@ -122,11 +121,5 @@ public class CCTV : MonoBehaviour
     {
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, GuardAlertDistance);
-    }
-
-    void PlayCCTVSound()
-    {
-        InvokeRepeating("PlayCCTVSound", 0, 2.0f);
-        FMODUnity.RuntimeManager.PlayOneShot("event:/Environment/cctv", transform.position);
     }
 }

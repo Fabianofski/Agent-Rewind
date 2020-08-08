@@ -38,24 +38,26 @@ public class Door : MonoBehaviour
 
     public void OpenDoor()
     {
+        if (sr.enabled)
+        {
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Interactables/door_open", transform.position);            
+        }
+
         // When Door is opened disable Sprite and Collider
         sr.enabled = false;
         bc2d.enabled = false;
-
-        //
-        // Play Open Door Sound
-        //
     }
 
     public void CloseDoor()
     {
+        if (!sr.enabled)
+        {
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Interactables/door_close", transform.position);
+        }
+
         // When Door is closed enable Sprite and Collider
         sr.enabled = true;
         bc2d.enabled = true;
-
-        //
-        // Play Close Door Sound
-        //
     }
 
     public void StartRewind(List<bool> OpenList)
